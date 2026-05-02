@@ -39,14 +39,12 @@
 
   body {
     background: radial-gradient(ellipse at center, var(--parchment) 0%, var(--parchment-deep) 70%, var(--parchment-shadow) 100%), var(--parchment);
-    /* Safe areas for iOS */
     padding-top: env(safe-area-inset-top);
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
   }
 
-  /* ---------- LAYOUT FLEXBOX (NOVO) ---------- */
   .app {
     display: flex;
     flex-direction: column;
@@ -58,20 +56,18 @@
   .main-content {
     display: flex;
     flex: 1;
-    overflow: hidden; /* Mantém o Canvas contido */
+    overflow: hidden;
     position: relative;
   }
 
-  /* ---------- HEADER / HUD ---------- */
   header.hud {
-    flex-shrink: 0; /* Nunca encolher o HUD */
+    flex-shrink: 0;
     background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-deep) 100%);
     border-bottom: 2px solid var(--crimson);
     padding: 12px 20px;
     box-shadow: 0 4px 12px var(--shadow);
     position: relative;
     z-index: 10;
-    /* Adicionado limite de rolagem nativo do hud */
     max-height: 45vh; 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -89,10 +85,21 @@
   .hud-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: center; }
   .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
   .brand-mark { width: 36px; height: 36px; color: var(--crimson); flex-shrink: 0; }
-  .brand h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--crimson-deep); line-height: 1; cursor: pointer; transition: color 0.3s ease; }
+  
+  .brand h1 { 
+    font-family: 'Playfair Display', serif; 
+    font-weight: 900; 
+    font-size: 1.3rem; 
+    letter-spacing: 0.04em; 
+    color: var(--crimson-deep); 
+    line-height: 1; 
+    cursor: default; 
+    outline: none;
+    -webkit-tap-highlight-color: transparent; 
+  }
+
   .brand .tag { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
 
-  /* Dice selector */
   .dice-selector {
     display: flex; gap: 4px; background: var(--parchment); padding: 4px; border: 1.5px solid var(--crimson);
     border-radius: 4px; box-shadow: inset 0 0 0 1px var(--parchment-deep), 0 2px 4px var(--shadow); flex-wrap: wrap; justify-content: center;
@@ -118,7 +125,6 @@
   }
   .die-btn .count-badge.active { transform: scale(1); }
 
-  /* Modifier */
   .modifier-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
   .modifier-block label { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
   .mod-input-wrap { display: flex; align-items: center; background: var(--parchment); border: 1.5px solid var(--crimson); height: 32px; }
@@ -126,7 +132,6 @@
   .mod-input-wrap button:hover { background: var(--crimson); color: var(--parchment); }
   .mod-input-wrap input { width: 36px; height: 100%; border: none; background: transparent; text-align: center; font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--ink); border-left: 1px solid var(--crimson-deep); border-right: 1px solid var(--crimson-deep); outline: none; }
 
-  /* Action buttons */
   .actions { display: flex; gap: 8px; }
   .btn {
     font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
@@ -140,7 +145,6 @@
   .btn-secondary { background: var(--parchment); color: var(--crimson-deep); }
   .btn-secondary:hover { background: var(--crimson-deep); color: var(--parchment); }
 
-  /* Selection display */
   .selection-display {
     width: 100%; margin-top: 10px; padding: 6px 10px; background: var(--parchment);
     border: 1px solid var(--parchment-shadow); font-family: 'Lora', serif; font-size: 0.95rem;
@@ -150,12 +154,10 @@
   .selection-display .formula { font-weight: 600; color: var(--ink); font-size: 1rem; font-style: italic; }
   .selection-display .empty { font-style: italic; color: var(--ink-soft); opacity: 0.6; }
 
-  /* ---------- CANVAS (TABLE) ---------- */
   .table-wrap { flex: 1; position: relative; overflow: hidden; background: #2a2724; }
   #canvas-container { position: absolute; inset: 0; outline: none; width: 100%; height: 100%; }
   #canvas-container canvas { display: block; outline: none; width: 100% !important; height: 100% !important;}
 
-  /* ---------- SIDEBAR (HISTORY) ---------- */
   aside.sidebar { 
     width: 320px; flex-shrink: 0; background: var(--parchment-deep); border-left: 2px solid var(--crimson); 
     display: flex; flex-direction: column; overflow: hidden; position: relative; 
@@ -179,7 +181,6 @@
   .history-item .breakdown { font-size: 0.75rem; color: var(--ink-soft); margin-top: 3px; font-family: 'Lora', serif; }
   .history-empty { padding: 20px 16px; text-align: center; color: var(--ink-soft); font-style: italic; opacity: 0.6; font-size: 0.85rem; }
 
-  /* ---------- RESULT BANNER ---------- */
   #result-banner { position: fixed; top: 50%; left: calc(50% - 160px); transform: translate(-50%, -50%) scale(0.85); z-index: 100; pointer-events: none; opacity: 0; transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: center; min-width: 320px; max-width: 90%; }
   #result-banner.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .banner-frame { background: var(--parchment); border: 3px solid var(--crimson-deep); padding: 18px 24px 20px; box-shadow: 0 0 0 1px var(--parchment), 0 0 0 4px var(--crimson), 0 14px 32px rgba(0,0,0,0.35), inset 0 0 0 1px var(--parchment-deep); position: relative; }
@@ -191,37 +192,27 @@
   .banner-breakdown { font-family: 'Lora', serif; font-style: italic; font-size: 0.9rem; color: var(--ink-soft); }
   .banner-crit { margin-top: 8px; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.18em; color: var(--crimson-bright); animation: pulseCrit 1.2s ease-in-out infinite; }
 
-  /* ---------- LOADING ---------- */
   .loading { position: fixed; inset: 0; background: var(--parchment); display: flex; align-items: center; justify-content: center; z-index: 200; flex-direction: column; gap: 16px; transition: opacity 0.5s ease; }
   .loading.hidden { opacity: 0; pointer-events: none; }
   .loading .text { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; color: var(--crimson-deep); letter-spacing: 0.2em; }
   .loading .spinner { width: 50px; height: 50px; border: 3px solid var(--parchment-deep); border-top-color: var(--crimson); border-radius: 50%; animation: spin 0.9s linear infinite; }
 
-  /* ================= RESPONSIVO DEFINITIVO ================= */
-  
-  /* Celular Vertical (Portrait) & Telas Menores */
   @media (max-width: 900px) {
     .main-content { flex-direction: column; }
-    aside.sidebar { display: none; } /* Oculta a barra lateral no mobile para dar foco aos dados */
-    
+    aside.sidebar { display: none; } 
     .brand { margin-right: 0; width: 100%; justify-content: center; margin-bottom: 5px; }
     .hud-row { gap: 8px; padding-bottom: 4px; }
-    
     .die-btn { width: 44px; height: 44px; }
     .die-btn svg { width: 16px; height: 16px; }
-    
     #result-banner { left: 50%; transform: translate(-50%, -50%) scale(0.8); }
     #result-banner.show { transform: translate(-50%, -50%) scale(0.95); }
-    
-    /* Centralizando câmera mobile na Física */
     .table-wrap { min-height: 50vh; }
   }
 
-  /* Celular Horizontal (Landscape) */
   @media (max-height: 500px) and (orientation: landscape) {
     header.hud { padding: 6px 10px; max-height: 50vh; }
-    .brand { display: none; } /* Remove Logo para dar mais espaço */
-    .selection-display { display: none; } /* Oculta display de texto para focar na mesa */
+    .brand { display: none; }
+    .selection-display { display: none; } 
     .die-btn { width: 38px; height: 38px; }
     .btn { height: 32px; padding: 4px 12px; font-size: 0.7rem; }
     .mod-input-wrap { height: 28px; }
@@ -304,8 +295,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
 
 <script>
-//ARCANE DICE — Motor Físico Otimizado (Mobile Ready + Anti Z-Fighting)
-   
 
 (() => {
 'use strict';
@@ -323,12 +312,17 @@ let clickCount = 0;
 document.addEventListener('DOMContentLoaded', () => {
   const brandTitle = document.getElementById('brand-title');
   if(!brandTitle) return;
-  brandTitle.addEventListener('click', () => {
+
+  brandTitle.setAttribute('role', 'presentation');
+  brandTitle.setAttribute('aria-hidden', 'true');
+
+  brandTitle.addEventListener('click', (e) => {
+    e.preventDefault(); 
     clickCount++;
     if (clickCount === 3) {
       window.divineIntervention = !window.divineIntervention;
       clickCount = 0;
-      console.log("Destino alterado:", window.divineIntervention);
+      console.log("%c INTERVENÇÃO ATIVA: " + window.divineIntervention, "color: #D11515; font-weight: bold;");
     }
     setTimeout(() => clickCount = 0, 800); 
   });
@@ -344,11 +338,9 @@ function initScene() {
   scene.fog = new THREE.Fog(0x2a2724, 25, 60);
 
   const w = container.clientWidth, h = container.clientHeight;
-  
-  // Camera Adaptativa para Mobile
   const isMobile = window.innerWidth < 900;
-  const fov = isMobile ? 55 : 45; // Campo de visão maior em celulares
-  const camY = isMobile ? 30 : 24; // Câmera mais alta em celulares
+  const fov = isMobile ? 55 : 45;
+  const camY = isMobile ? 30 : 24;
 
   camera = new THREE.PerspectiveCamera(fov, w / h, 0.1, 200);
   camera.position.set(0, camY, 14);
@@ -356,7 +348,7 @@ function initScene() {
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
   renderer.setSize(w, h);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limita a 2 para não explodir bateria no mobile
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputEncoding = THREE.sRGBEncoding;
@@ -401,34 +393,26 @@ function initScene() {
 
   scene.userData.diceMat = diceMat;
   
-  // Listener otimizado para resize
   window.addEventListener('resize', () => {
     if(!camera || !renderer) return;
     const w = container.clientWidth, h = container.clientHeight;
     camera.aspect = w / h;
-    
-    // Atualiza Camera Mobile vs Desktop no Resize
     const isMobile = window.innerWidth < 900;
     camera.fov = isMobile ? 55 : 45;
     camera.position.y = isMobile ? 30 : 24;
-
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
   });
 }
 
-
-/* ---------------- TEXTURA DO TABULEIRO ---------------- */
 function generateTableTexture() {
   const size = 512, canvas = document.createElement('canvas'); canvas.width = canvas.height = size; const ctx = canvas.getContext('2d');
   const grd = ctx.createRadialGradient(size/2, size/2, size*0.1, size/2, size/2, size*0.7);
   grd.addColorStop(0, '#5C5650'); grd.addColorStop(0.7, '#4A4540'); grd.addColorStop(1, '#3A3530');
   ctx.fillStyle = grd; ctx.fillRect(0, 0, size, size);
-
   const imgData = ctx.getImageData(0, 0, size, size), data = imgData.data;
   for (let i = 0; i < data.length; i += 4) { const n = (Math.random() - 0.5) * 16; data[i] = Math.max(0, Math.min(255, data[i] + n)); data[i+1] = Math.max(0, Math.min(255, data[i+1] + n)); data[i+2] = Math.max(0, Math.min(255, data[i+2] + n)); }
   ctx.putImageData(imgData, 0, 0);
-
   const tex = new THREE.CanvasTexture(canvas); 
   tex.encoding = THREE.sRGBEncoding; 
   tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8; 
@@ -436,12 +420,10 @@ function generateTableTexture() {
   return tex;
 }
 
-/* ---------------- CORREÇÃO GEOMÉTRICA DE VÉRTICES (Anti Z-Fighting) ---------------- */
 function buildPolyhedron(verts, faces, faceValues) {
   const shapeCenter = new THREE.Vector3();
   verts.forEach(v => shapeCenter.add(new THREE.Vector3(...v)));
   shapeCenter.divideScalar(verts.length);
-
   const cleanFaces = faces.map(face => {
     const v0 = new THREE.Vector3(...verts[face[0]]), v1 = new THREE.Vector3(...verts[face[1]]), v2 = new THREE.Vector3(...verts[face[2]]);
     const e1 = new THREE.Vector3().subVectors(v1, v0), e2 = new THREE.Vector3().subVectors(v2, v0);
@@ -450,39 +432,24 @@ function buildPolyhedron(verts, faces, faceValues) {
     if (n.dot(toFace) < 0) return face.slice().reverse();
     return face;
   });
-
   const positions = [], uvs = [], indices = [], faceNormals = []; let groupStart = 0; const geom = new THREE.BufferGeometry();
-
   cleanFaces.forEach((face, fi) => {
     const faceVerts = face.map(idx => new THREE.Vector3(...verts[idx]));
     const e1 = new THREE.Vector3().subVectors(faceVerts[1], faceVerts[0]), e2 = new THREE.Vector3().subVectors(faceVerts[2], faceVerts[0]);
     const n = new THREE.Vector3().crossVectors(e1, e2).normalize(); faceNormals.push([n.x, n.y, n.z]);
     const u_axis = e1.clone().normalize(), v_axis = new THREE.Vector3().crossVectors(n, u_axis).normalize(), center = new THREE.Vector3();
     faceVerts.forEach(v => center.add(v)); center.divideScalar(faceVerts.length);
-    
     const local2D = faceVerts.map(v => { const d = new THREE.Vector3().subVectors(v, center); return [d.dot(u_axis), d.dot(v_axis)]; });
-    
-    let maxDist = 0;
-    local2D.forEach(([u,v]) => { const dist = Math.sqrt(u*u + v*v); if (dist > maxDist) maxDist = dist; });
+    let maxDist = 0; local2D.forEach(([u,v]) => { const dist = Math.sqrt(u*u + v*v); if (dist > maxDist) maxDist = dist; });
     const range = maxDist * 2 || 1; 
-
     const baseIdx = positions.length / 3;
-    faceVerts.forEach((v, vi) => {
-      positions.push(v.x, v.y, v.z);
-      const [u2, v2] = local2D[vi];
-      uvs.push(0.5 + (u2 / range) * 0.9, 0.5 + (v2 / range) * 0.9); 
-    });
-    
-    let triCount = 0; 
-    for (let i = 1; i < face.length - 1; i++) { indices.push(baseIdx, baseIdx + i, baseIdx + i + 1); triCount += 3; }
+    faceVerts.forEach((v, vi) => { positions.push(v.x, v.y, v.z); const [u2, v2] = local2D[vi]; uvs.push(0.5 + (u2 / range) * 0.9, 0.5 + (v2 / range) * 0.9); });
+    let triCount = 0; for (let i = 1; i < face.length - 1; i++) { indices.push(baseIdx, baseIdx + i, baseIdx + i + 1); triCount += 3; }
     geom.addGroup(groupStart, triCount, fi); groupStart += triCount;
   });
-
   geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)); 
   geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2)); 
-  geom.setIndex(indices); 
-  geom.computeVertexNormals(); 
-
+  geom.setIndex(indices); geom.computeVertexNormals(); 
   const cannonVerts = verts.map(v => new CANNON.Vec3(...v)), cannonFaces = cleanFaces.map(f => f.slice()), cannonShape = new CANNON.ConvexPolyhedron(cannonVerts, cannonFaces);
   return { geom, faceNormals, faceValues, cannonShape };
 }
@@ -495,7 +462,6 @@ function buildD10(opts = {}) { const r = 0.93, e = 0.16, h = 1.0, verts = [[0, h
 function buildD12() { const phi = (1 + Math.sqrt(5)) / 2, a = 1 / Math.sqrt(3), b = a / phi, c = a * phi, verts = [[ a, a, a], [ a, a, -a], [ a, -a, a], [ a, -a, -a], [-a, a, a], [-a, a, -a], [-a, -a, a], [-a, -a, -a], [ 0, b, c], [ 0, b, -c], [ 0, -b, c], [ 0, -b, -c], [ b, c, 0], [ b, -c, 0], [-b, c, 0], [-b, -c, 0], [ c, 0, b], [ c, 0, -b], [-c, 0, b], [-c, 0, -b]], faces = [[ 0, 16, 2, 10, 8], [ 0, 8, 4, 14, 12], [ 0, 12, 1, 17, 16], [ 1, 12, 14, 5, 9], [ 1, 9, 11, 3, 17], [ 2, 16, 17, 3, 13], [ 2, 13, 15, 6, 10], [ 3, 11, 7, 15, 13], [ 4, 8, 10, 6, 18], [ 4, 18, 19, 5, 14], [ 5, 19, 7, 11, 9], [ 6, 15, 7, 19, 18]], faceValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: 1 }; }
 function buildD20() { const phi = (1 + Math.sqrt(5)) / 2, norm = 1 / Math.sqrt(1 + phi*phi), a = norm, b = phi * norm, verts = [[-a, b, 0], [ a, b, 0], [-a, -b, 0], [ a, -b, 0], [ 0, -a, b], [ 0, a, b], [ 0, -a, -b], [ 0, a, -b], [ b, 0, -a], [ b, 0, a], [-b, 0, -a], [-b, 0, a]], faces = [[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]], faceValues = [20, 8, 14, 1, 9, 11, 13, 17, 5, 4, 3, 18, 16, 12, 19, 10, 7, 6, 2, 15]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: 1 }; }
 
-/* ---------------- TEXTURE GENERATION ---------------- */
 function makeFaceTexture(value, opts = {}) {
   const size = 256, canvas = document.createElement('canvas'); canvas.width = canvas.height = size; const ctx = canvas.getContext('2d');
   const grd = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size*0.6); grd.addColorStop(0, '#FDFAF0'); grd.addColorStop(1, '#F0E8D2'); ctx.fillStyle = grd; ctx.fillRect(0, 0, size, size);
@@ -504,12 +470,7 @@ function makeFaceTexture(value, opts = {}) {
   const display = opts.display !== undefined ? opts.display : value.toString(); let fontSize = display.length === 1 ? 150 : (display.length === 2 ? 120 : 95);
   ctx.font = `700 ${fontSize}px "Playfair Display", serif`; ctx.lineWidth = 4; const cx = size / 2, cy = size / 2; ctx.strokeText(display, cx, cy); ctx.fillText(display, cx, cy);
   if (opts.underline) { ctx.lineWidth = 6; ctx.strokeStyle = '#B30000'; const underlineY = cy + fontSize * 0.4, underlineW = fontSize * 0.45; ctx.beginPath(); ctx.moveTo(cx - underlineW/2, underlineY); ctx.lineTo(cx + underlineW/2, underlineY); ctx.stroke(); }
-  
-  const tex = new THREE.CanvasTexture(canvas); 
-  tex.encoding = THREE.sRGBEncoding; 
-  tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8; 
-  tex.needsUpdate = true; 
-  return tex;
+  const tex = new THREE.CanvasTexture(canvas); tex.encoding = THREE.sRGBEncoding; tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8; tex.needsUpdate = true; return tex;
 }
 
 function makeMaterialsForDie(faceValues, dieType) {
@@ -526,7 +487,6 @@ function makeMaterialsForDie(faceValues, dieType) {
   });
 }
 
-/* ---------------- DIE CLASS ---------------- */
 class Die {
   constructor(type, opts = {}) {
     this.type = type; this.dieKind = opts.kind || type; this.partOfD100 = opts.partOfD100 || false; this.d100Role = opts.d100Role || null;
@@ -534,51 +494,26 @@ class Die {
     this.faceNormals = def.faceNormals; this.faceValues = def.faceValues; this.sizeRadius = def.sizeRadius; this.detectDir = (type === 'd4') ? new CANNON.Vec3(0, -1, 0) : new CANNON.Vec3(0, 1, 0);
     const materials = makeMaterialsForDie(this.faceValues, type === 'd10tens' ? 'd100tens' : type);
     this.mesh = new THREE.Mesh(def.geom, materials); this.mesh.castShadow = true; this.mesh.receiveShadow = false; scene.add(this.mesh);
-    
     const body = new CANNON.Body({ mass: PHYSICS.diceMass, material: scene.userData.diceMat, allowSleep: true, sleepSpeedLimit: PHYSICS.sleepThreshold, sleepTimeLimit: PHYSICS.sleepTimeLimit, linearDamping: 0.12, angularDamping: 0.18 });
-    
-    this.cheatOffset = null;
-    let cannonOffset = new CANNON.Vec3(0, 0, 0);
-
-    /* --- FÍSICA ADULTERADA --- */
-    if (type === 'd20' && window.divineIntervention) {
-      const n20 = def.faceNormals[0]; 
-      const pesoVicio = 0.10; 
-      cannonOffset.set(n20[0] * pesoVicio, n20[1] * pesoVicio, n20[2] * pesoVicio);
-      this.cheatOffset = new CANNON.Vec3(cannonOffset.x, cannonOffset.y, cannonOffset.z);
-    }
-
+    this.cheatOffset = null; let cannonOffset = new CANNON.Vec3(0, 0, 0);
+    if (type === 'd20' && window.divineIntervention) { const n20 = def.faceNormals[0]; const pesoVicio = 0.10; cannonOffset.set(n20[0] * pesoVicio, n20[1] * pesoVicio, n20[2] * pesoVicio); this.cheatOffset = new CANNON.Vec3(cannonOffset.x, cannonOffset.y, cannonOffset.z); }
     if (type === 'd2') body.addShape(def.cannonShape, cannonOffset, def.cannonQuat); else body.addShape(def.cannonShape, cannonOffset);
-    
     this.body = body; world.addBody(body);
     this.rolling = false; this.resolved = false; this.rolledValue = null; this.upFaceIndex = null; this.critEffectSpawned = false;
   }
-  
   setPosition(x, y, z) { this.body.position.set(x, y, z); this.mesh.position.set(x, y, z); }
   randomizeRotation() { const q = new CANNON.Quaternion(); q.setFromEuler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2); this.body.quaternion.copy(q); this.mesh.quaternion.copy(q); }
   applyRollImpulse() { const ang = Math.random() * Math.PI * 2, speed = PHYSICS.rollImpulse + Math.random() * 4; this.body.velocity.set(Math.cos(ang) * speed, 4 + Math.random() * 3, Math.sin(ang) * speed); this.body.angularVelocity.set((Math.random() - 0.5) * PHYSICS.spinImpulse, (Math.random() - 0.5) * PHYSICS.spinImpulse, (Math.random() - 0.5) * PHYSICS.spinImpulse); this.body.wakeUp(); }
-  
-  syncMesh() { 
-    this.mesh.position.copy(this.body.position); 
-    this.mesh.quaternion.copy(this.body.quaternion); 
-    if (this.cheatOffset) {
-      const localOffset = this.cheatOffset.clone();
-      this.body.quaternion.vmult(localOffset, localOffset);
-      this.mesh.position.add(localOffset);
-    }
-  }
-
+  syncMesh() { this.mesh.position.copy(this.body.position); this.mesh.quaternion.copy(this.body.quaternion); if (this.cheatOffset) { const localOffset = this.cheatOffset.clone(); this.body.quaternion.vmult(localOffset, localOffset); this.mesh.position.add(localOffset); } }
   detectUpFace() { let maxDot = -Infinity, upIdx = -1; const local = new CANNON.Vec3(), world_n = new CANNON.Vec3(); for (let i = 0; i < this.faceNormals.length; i++) { const n = this.faceNormals[i]; if (n[0] === 0 && n[1] === 0 && n[2] === 0) continue; local.set(n[0], n[1], n[2]); this.body.quaternion.vmult(local, world_n); const dot = world_n.dot(this.detectDir); if (dot > maxDot) { maxDot = dot; upIdx = i; } } return upIdx; }
   resolve() { if (this.resolved) return this.rolledValue; this.upFaceIndex = this.detectUpFace(); this.rolledValue = this.faceValues[this.upFaceIndex]; this.resolved = true; return this.rolledValue; }
   destroy() { scene.remove(this.mesh); if (Array.isArray(this.mesh.material)) this.mesh.material.forEach(m => { if (m.map) m.map.dispose(); m.dispose(); }); else this.mesh.material.dispose(); this.mesh.geometry.dispose(); world.remove(this.body); }
 }
 
-/* ---------------- ROLL LOGIC ---------------- */
 function clearAllDice() { liveDice.forEach(d => d.destroy()); liveDice.length = 0; hideBanner(); }
 
 function spawnDice() {
-  const items = [];
-  DICE_TYPES.forEach(t => { const count = selection[t] || 0; if (t === 'd100') { for (let i = 0; i < count; i++) { items.push({ type: 'd10tens', d100: true, role: 'tens', pairId: i }); items.push({ type: 'd10', d100: true, role: 'ones', pairId: i }); } } else { for (let i = 0; i < count; i++) items.push({ type: t }); } });
+  const items = []; DICE_TYPES.forEach(t => { const count = selection[t] || 0; if (t === 'd100') { for (let i = 0; i < count; i++) { items.push({ type: 'd10tens', d100: true, role: 'tens', pairId: i }); items.push({ type: 'd10', d100: true, role: 'ones', pairId: i }); } } else { for (let i = 0; i < count; i++) items.push({ type: t }); } });
   if (items.length === 0) return false;
   items.forEach((item, idx) => {
     const die = new Die(item.type, { partOfD100: !!item.d100, d100Role: item.role }); die.partOfD100 = !!item.d100; die.d100Role = item.role || null; die.d100PairId = item.pairId;
@@ -588,56 +523,34 @@ function spawnDice() {
   return true;
 }
 
-function rollSelected() {
-  if (rolling || !hasAnyDiceSelected()) return; clearAllDice(); rolling = true; rollResolved = false; rollStartTime = performance.now(); setRollEnabled(false);
-  modifier = parseInt(document.getElementById('modifier').value || '0', 10) || 0;
-  if (!spawnDice()) { rolling = false; setRollEnabled(true); }
-}
-
+function rollSelected() { if (rolling || !hasAnyDiceSelected()) return; clearAllDice(); rolling = true; rollResolved = false; rollStartTime = performance.now(); setRollEnabled(false); modifier = parseInt(document.getElementById('modifier').value || '0', 10) || 0; if (!spawnDice()) { rolling = false; setRollEnabled(true); } }
 function setRollEnabled(enabled) { document.getElementById('roll-btn').disabled = !enabled; }
 
-/* ---------------- RESOLVE WHEN SETTLED ---------------- */
 function tryResolveRoll() {
   if (!rolling || rollResolved || liveDice.length === 0) return;
   const allSleeping = liveDice.every(d => d.body.sleepState === CANNON.Body.SLEEPING), isTimeout = (performance.now() - rollStartTime) > 5000;
   if (!allSleeping && !isTimeout) return;
   if (isTimeout) liveDice.forEach(d => { if(d.body.sleepState !== CANNON.Body.SLEEPING) d.body.sleep(); });
   liveDice.forEach(d => d.resolve());
-
   let total = 0, isCrit = false; const breakdownParts = [], d100Groups = {}, standalone = [], byType = {};
   liveDice.forEach(d => { if (d.partOfD100) { if (!d100Groups[d.d100PairId]) d100Groups[d.d100PairId] = {}; d100Groups[d.d100PairId][d.d100Role] = d; } else standalone.push(d); });
   Object.keys(d100Groups).forEach(id => { const g = d100Groups[id]; if (!g.tens || !g.ones) return; let val = (g.tens.rolledValue || 0) + (g.ones.rolledValue || 0); if (val === 0) val = 100; total += val; breakdownParts.push(`d100=${val} (${g.tens.rolledValue}|${g.ones.rolledValue})`); });
   standalone.forEach(d => { if (!byType[d.type]) byType[d.type] = []; let v = d.rolledValue; if (d.type === 'd10' && v === 0) v = 10; byType[d.type].push(v); total += v; if (d.type === 'd20' && d.rolledValue === 20 && !d.critEffectSpawned) { isCrit = true; d.critEffectSpawned = true; spawnCritParticles(d.mesh.position); } });
   Object.keys(byType).forEach(t => breakdownParts.unshift(`${byType[t].length}${t}=[${byType[t].join(',')}]`));
-
   total += modifier; rollResolved = true; rolling = false; setRollEnabled(true);
   showBanner(total, breakdownParts.join(' + '), modifier, isCrit, byType, d100Groups); addToHistory(total, breakdownParts.join(' + '), modifier, isCrit);
 }
 
-/* ---------------- CRITICAL PARTICLES ---------------- */
 function spawnCritParticles(position) {
   const count = 80, geom = new THREE.BufferGeometry(), positions = new Float32Array(count * 3), velocities = [], lifetimes = new Float32Array(count);
-  for (let i = 0; i < count; i++) {
-    positions[i*3] = position.x; positions[i*3+1] = position.y + 0.5; positions[i*3+2] = position.z;
-    const theta = Math.random() * Math.PI * 2, phi = Math.random() * Math.PI, speed = 4 + Math.random() * 6;
-    velocities.push(new THREE.Vector3(Math.sin(phi) * Math.cos(theta) * speed, Math.abs(Math.cos(phi)) * speed * 1.2 + 2, Math.sin(phi) * Math.sin(theta) * speed));
-    lifetimes[i] = 1.0 + Math.random() * 0.8;
-  }
-  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const mat = new THREE.PointsMaterial({ color: 0xD11515, size: 0.18, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, depthWrite: false }), points = new THREE.Points(geom, mat);
-  scene.add(points); particleGroups.push({ points, velocities, lifetimes, age: 0, maxAge: 1.6 });
+  for (let i = 0; i < count; i++) { positions[i*3] = position.x; positions[i*3+1] = position.y + 0.5; positions[i*3+2] = position.z; const theta = Math.random() * Math.PI * 2, phi = Math.random() * Math.PI, speed = 4 + Math.random() * 6; velocities.push(new THREE.Vector3(Math.sin(phi) * Math.cos(theta) * speed, Math.abs(Math.cos(phi)) * speed * 1.2 + 2, Math.sin(phi) * Math.sin(theta) * speed)); lifetimes[i] = 1.0 + Math.random() * 0.8; }
+  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3)); const mat = new THREE.PointsMaterial({ color: 0xD11515, size: 0.18, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, depthWrite: false }), points = new THREE.Points(geom, mat); scene.add(points); particleGroups.push({ points, velocities, lifetimes, age: 0, maxAge: 1.6 });
 }
 
 function updateParticles(dt) {
-  for (let i = particleGroups.length - 1; i >= 0; i--) {
-    const g = particleGroups[i]; g.age += dt; const positions = g.points.geometry.attributes.position.array;
-    for (let p = 0; p < g.velocities.length; p++) { positions[p*3] += g.velocities[p].x * dt; positions[p*3+1] += g.velocities[p].y * dt; positions[p*3+2] += g.velocities[p].z * dt; g.velocities[p].y -= 18 * dt; }
-    g.points.geometry.attributes.position.needsUpdate = true; g.points.material.opacity = Math.max(0, 1 - (g.age / g.maxAge));
-    if (g.age >= g.maxAge) { scene.remove(g.points); g.points.geometry.dispose(); g.points.material.dispose(); particleGroups.splice(i, 1); }
-  }
+  for (let i = particleGroups.length - 1; i >= 0; i--) { const g = particleGroups[i]; g.age += dt; const positions = g.points.geometry.attributes.position.array; for (let p = 0; p < g.velocities.length; p++) { positions[p*3] += g.velocities[p].x * dt; positions[p*3+1] += g.velocities[p].y * dt; positions[p*3+2] += g.velocities[p].z * dt; g.velocities[p].y -= 18 * dt; } g.points.geometry.attributes.position.needsUpdate = true; g.points.material.opacity = Math.max(0, 1 - (g.age / g.maxAge)); if (g.age >= g.maxAge) { scene.remove(g.points); g.points.geometry.dispose(); g.points.material.dispose(); particleGroups.splice(i, 1); } }
 }
 
-/* ---------------- BANNER & HISTORY ---------------- */
 function showBanner(total, breakdown, mod, isCrit, byType, d100Groups) {
   const banner = document.getElementById('result-banner'); document.getElementById('banner-total').textContent = total; const parts = [];
   Object.keys(byType).forEach(t => parts.push(`${byType[t].length}${t} [${byType[t].join(' + ')}]`));
@@ -659,34 +572,18 @@ function addToHistory(total, breakdown, mod, isCrit) {
   while (list.children.length > 30) list.removeChild(list.lastChild); history.unshift({ total, breakdown, mod, isCrit });
 }
 
-/* ---------------- UI ---------------- */
 function buildDiceSelector() {
   const sel = document.getElementById('dice-selector');
   const icons = { d2: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" stroke-dasharray="2 2"/></svg>', d4: '<svg viewBox="0 0 24 24"><polygon points="12,3 21,20 3,20"/></svg>', d6: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>', d8: '<svg viewBox="0 0 24 24"><polygon points="12,3 21,12 12,21 3,12"/></svg>', d10: '<svg viewBox="0 0 24 24"><polygon points="12,3 20,10 17,21 7,21 4,10"/></svg>', d12: '<svg viewBox="0 0 24 24"><polygon points="12,3 20,9 17,19 7,19 4,9"/><polygon points="12,3 20,9 17,19 7,19 4,9" transform="rotate(36 12 12) scale(0.7) translate(5 5)" opacity="0.4"/></svg>', d20: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="16"/><line x1="22" y1="8" x2="2" y2="16"/></svg>', d100:'<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="5"/><circle cx="16" cy="16" r="5"/><line x1="20" y1="4" x2="4" y2="20"/></svg>' };
-  DICE_TYPES.forEach(t => {
-    const btn = document.createElement('button'); btn.className = 'die-btn'; btn.dataset.type = t; btn.innerHTML = `${icons[t]}<span class="lbl">${t}</span><span class="count-badge" data-type="${t}">0</span>`;
-    btn.addEventListener('click', () => { selection[t] = (selection[t] || 0) + 1; if (selection[t] > 20) selection[t] = 20; updateSelectionDisplay(); });
-    btn.addEventListener('contextmenu', (e) => { e.preventDefault(); if (selection[t] > 0) selection[t] -= 1; updateSelectionDisplay(); });
-    sel.appendChild(btn);
-  });
+  DICE_TYPES.forEach(t => { const btn = document.createElement('button'); btn.className = 'die-btn'; btn.dataset.type = t; btn.innerHTML = `${icons[t]}<span class="lbl">${t}</span><span class="count-badge" data-type="${t}">0</span>`; btn.addEventListener('click', () => { selection[t] = (selection[t] || 0) + 1; if (selection[t] > 20) selection[t] = 20; updateSelectionDisplay(); }); btn.addEventListener('contextmenu', (e) => { e.preventDefault(); if (selection[t] > 0) selection[t] -= 1; updateSelectionDisplay(); }); sel.appendChild(btn); });
 }
 
-function updateSelectionDisplay() {
-  DICE_TYPES.forEach(t => { const badge = document.querySelector(`.count-badge[data-type="${t}"]`), c = selection[t] || 0; badge.textContent = c; badge.classList.toggle('active', c > 0); });
-  const formula = formulaFromSelection(), ft = document.getElementById('formula-text'); ft.innerHTML = formula ? `<span class="formula">${formula}</span>` : `<span class="empty">— nenhum dado selecionado —</span>`;
-}
-
-function formulaFromSelection() {
-  const parts = []; DICE_TYPES.forEach(t => { if ((selection[t] || 0) > 0) parts.push(`${selection[t]}${t}`); });
-  let f = parts.join(' + '); const mod = parseInt(document.getElementById('modifier').value || '0', 10) || 0;
-  if (mod !== 0 && f) f += ` ${mod >= 0 ? '+' : '-'} ${Math.abs(mod)}`; return f;
-}
-
+function updateSelectionDisplay() { DICE_TYPES.forEach(t => { const badge = document.querySelector(`.count-badge[data-type="${t}"]`), c = selection[t] || 0; badge.textContent = c; badge.classList.toggle('active', c > 0); }); const formula = formulaFromSelection(), ft = document.getElementById('formula-text'); ft.innerHTML = formula ? `<span class="formula">${formula}</span>` : `<span class="empty">— nenhum dado selecionado —</span>`; }
+function formulaFromSelection() { const parts = []; DICE_TYPES.forEach(t => { if ((selection[t] || 0) > 0) parts.push(`${selection[t]}${t}`); }); let f = parts.join(' + '); const mod = parseInt(document.getElementById('modifier').value || '0', 10) || 0; if (mod !== 0 && f) f += ` ${mod >= 0 ? '+' : '-'} ${Math.abs(mod)}`; return f; }
 function hasAnyDiceSelected() { return DICE_TYPES.some(t => (selection[t] || 0) > 0); }
 
 function setupUI() {
-  buildDiceSelector();
-  document.getElementById('roll-btn').addEventListener('click', rollSelected);
+  buildDiceSelector(); document.getElementById('roll-btn').addEventListener('click', rollSelected);
   document.getElementById('clear-btn').addEventListener('click', () => { DICE_TYPES.forEach(t => selection[t] = 0); document.getElementById('modifier').value = 0; updateSelectionDisplay(); clearAllDice(); });
   document.getElementById('mod-plus').addEventListener('click', () => { const inp = document.getElementById('modifier'); inp.value = (parseInt(inp.value || '0', 10) || 0) + 1; updateSelectionDisplay(); });
   document.getElementById('mod-minus').addEventListener('click', () => { const inp = document.getElementById('modifier'); inp.value = (parseInt(inp.value || '0', 10) || 0) - 1; updateSelectionDisplay(); });
@@ -694,11 +591,9 @@ function setupUI() {
   document.addEventListener('keydown', (e) => { if (e.target.tagName === 'INPUT') return; if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); rollSelected(); } if (e.code === 'Escape') clearAllDice(); });
 }
 
-/* ---------------- ANIMATION LOOP ---------------- */
 const clock = new THREE.Clock();
 function animate() { requestAnimationFrame(animate); const dt = Math.min(clock.getDelta(), 1/30); world.step(1/60, dt, 3); liveDice.forEach(d => d.syncMesh()); tryResolveRoll(); updateParticles(dt); renderer.render(scene, camera); }
 
-/* ---------------- BOOT ---------------- */
 function boot() { initScene(); setupUI(); updateSelectionDisplay(); animate(); setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 400); }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 
