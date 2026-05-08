@@ -1,0 +1,17 @@
+{
+  "name": "arcane-dice",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "cannon-es": "latest",
+    "three": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
