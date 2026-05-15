@@ -3,7 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-<title>Arcane Dice — D&amp;D Roller</title>
+<title>Arcane Dice — 3D Dice Roller</title>
+
+
+<meta name="description" content="Role seus dados em 3D com física real. D2, D4, D6, D8, D10, D12, D20 e D100 para grupos de RPG de mesa." />
+<meta name="theme-color" content="#B30000" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Arcane Dice" />
+
+
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Arcane Dice" />
+<meta property="og:title" content="Arcane Dice — 3D Dice Roller" />
+<meta property="og:description" content="Role seus dados em 3D com física real. Para grupos de RPG de mesa." />
+<meta property="og:url" content="https://seudominio.com" />
+<meta property="og:image" content="https://seudominio.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Arcane Dice — 3D Dice Roller" />
+<meta name="twitter:description" content="Role seus dados em 3D com física real." />
+<meta name="twitter:image" content="https://seudominio.com/og-image.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -26,56 +52,30 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    height: 100%; width: 100%; overflow: hidden;
     font-family: 'Lora', 'Times New Roman', serif;
-    background: var(--parchment);
-    color: var(--ink);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
+    background: var(--parchment); color: var(--ink);
+    user-select: none; -webkit-user-select: none; touch-action: none;
   }
 
   body {
     background: radial-gradient(ellipse at center, var(--parchment) 0%, var(--parchment-deep) 70%, var(--parchment-shadow) 100%), var(--parchment);
-    padding-top: env(safe-area-inset-top);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
+    padding-top: env(safe-area-inset-top); padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom); padding-left: env(safe-area-inset-left);
   }
 
-  .app {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-
-  .main-content {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
+  .app { display: flex; flex-direction: column; height: 100%; width: 100%; position: relative; }
+  .main-content { display: flex; flex: 1; overflow: hidden; position: relative; }
 
   header.hud {
     flex-shrink: 0;
     background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-deep) 100%);
-    border-bottom: 2px solid var(--crimson);
-    padding: 12px 20px;
-    box-shadow: 0 4px 12px var(--shadow);
-    position: relative;
-    z-index: 10;
-    max-height: 45vh; 
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    border-bottom: 2px solid var(--crimson); padding: 12px 20px;
+    box-shadow: 0 4px 12px var(--shadow); position: relative; z-index: 10;
+    max-height: 45vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
-
-  header.hud::-webkit-scrollbar { width: 4px; height: 4px;}
+  header.hud::-webkit-scrollbar { width: 4px; height: 4px; }
   header.hud::-webkit-scrollbar-thumb { background: var(--crimson-deep); border-radius: 2px; }
-
   header.hud::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 4px;
     background: linear-gradient(90deg, transparent 0%, var(--crimson-deep) 20%, var(--crimson) 50%, var(--crimson-deep) 80%, transparent 100%);
@@ -85,43 +85,37 @@
   .hud-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: center; }
   .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
   .brand-mark { width: 36px; height: 36px; color: var(--crimson); flex-shrink: 0; }
-  
-  .brand h1 { 
-    font-family: 'Playfair Display', serif; 
-    font-weight: 900; 
-    font-size: 1.3rem; 
-    letter-spacing: 0.04em; 
-    color: var(--crimson-deep); 
-    line-height: 1; 
-    cursor: default; 
-    outline: none;
-    -webkit-tap-highlight-color: transparent; 
+  .brand h1 {
+    font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.3rem;
+    letter-spacing: 0.04em; color: var(--crimson-deep); line-height: 1;
+    cursor: default; outline: none; -webkit-tap-highlight-color: transparent;
   }
-
   .brand .tag { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
 
   .dice-selector {
-    display: flex; gap: 4px; background: var(--parchment); padding: 4px; border: 1.5px solid var(--crimson);
-    border-radius: 4px; box-shadow: inset 0 0 0 1px var(--parchment-deep), 0 2px 4px var(--shadow); flex-wrap: wrap; justify-content: center;
+    display: flex; gap: 4px; background: var(--parchment); padding: 4px;
+    border: 1.5px solid var(--crimson); border-radius: 4px;
+    box-shadow: inset 0 0 0 1px var(--parchment-deep), 0 2px 4px var(--shadow);
+    flex-wrap: wrap; justify-content: center;
   }
 
   .die-btn {
     width: 48px; height: 48px; background: var(--parchment-deep); border: 1px solid var(--crimson-deep);
-    cursor: pointer; transition: all 0.15s ease; display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 2px; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--crimson-deep); position: relative;
+    cursor: pointer; transition: all 0.15s ease; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    font-family: 'Playfair Display', serif; font-weight: 700; color: var(--crimson-deep); position: relative;
   }
-
   .die-btn:hover { background: var(--crimson); color: var(--parchment); transform: translateY(-2px); box-shadow: 0 4px 8px var(--shadow); }
   .die-btn:hover svg { fill: var(--parchment); stroke: var(--parchment); }
   .die-btn:active { transform: translateY(0); }
   .die-btn svg { width: 18px; height: 18px; fill: none; stroke: var(--crimson-deep); stroke-width: 1.5; transition: all 0.15s ease; }
   .die-btn .lbl { font-size: 0.65rem; letter-spacing: 0.06em; }
-
   .die-btn .count-badge {
     position: absolute; top: -6px; right: -6px; background: var(--crimson); color: var(--parchment);
-    width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 700; display: flex;
-    align-items: center; justify-content: center; box-shadow: 0 1px 3px var(--shadow); transform: scale(0);
-    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; font-family: 'Lora', serif;
+    width: 18px; height: 18px; border-radius: 50%; font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px var(--shadow);
+    transform: scale(0); transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none; font-family: 'Lora', serif;
   }
   .die-btn .count-badge.active { transform: scale(1); }
 
@@ -135,8 +129,8 @@
   .actions { display: flex; gap: 8px; }
   .btn {
     font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
-    padding: 8px 16px; height: 38px; border: 2px solid var(--crimson-deep); cursor: pointer; transition: all 0.15s ease;
-    font-size: 0.75rem; position: relative; overflow: hidden;
+    padding: 8px 16px; height: 38px; border: 2px solid var(--crimson-deep); cursor: pointer;
+    transition: all 0.15s ease; font-size: 0.75rem; position: relative; overflow: hidden;
   }
   .btn-primary { background: var(--crimson); color: var(--parchment); box-shadow: 0 3px 0 var(--crimson-deep), 0 4px 8px var(--shadow); }
   .btn-primary:hover:not(:disabled) { background: var(--crimson-bright); transform: translateY(-1px); box-shadow: 0 4px 0 var(--crimson-deep), 0 6px 12px var(--shadow); }
@@ -148,7 +142,8 @@
   .selection-display {
     width: 100%; margin-top: 10px; padding: 6px 10px; background: var(--parchment);
     border: 1px solid var(--parchment-shadow); font-family: 'Lora', serif; font-size: 0.95rem;
-    color: var(--ink-soft); min-height: 32px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; text-align: center;
+    color: var(--ink-soft); min-height: 32px; display: flex; align-items: center;
+    justify-content: center; gap: 8px; flex-wrap: wrap; text-align: center;
   }
   .selection-display .label { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson-deep); }
   .selection-display .formula { font-weight: 600; color: var(--ink); font-size: 1rem; font-style: italic; }
@@ -156,11 +151,12 @@
 
   .table-wrap { flex: 1; position: relative; overflow: hidden; background: #2a2724; }
   #canvas-container { position: absolute; inset: 0; outline: none; width: 100%; height: 100%; }
-  #canvas-container canvas { display: block; outline: none; width: 100% !important; height: 100% !important;}
+  #canvas-container canvas { display: block; outline: none; width: 100% !important; height: 100% !important; }
 
-  aside.sidebar { 
-    width: 320px; flex-shrink: 0; background: var(--parchment-deep); border-left: 2px solid var(--crimson); 
-    display: flex; flex-direction: column; overflow: hidden; position: relative; 
+  aside.sidebar {
+    width: 320px; flex-shrink: 0; background: var(--parchment-deep);
+    border-left: 2px solid var(--crimson); display: flex; flex-direction: column;
+    overflow: hidden; position: relative;
   }
   aside.sidebar::before { content: ""; position: absolute; top: 0; bottom: 0; left: -2px; width: 2px; background: linear-gradient(180deg, transparent 0%, var(--crimson-deep) 20%, var(--crimson) 50%, var(--crimson-deep) 80%, transparent 100%); }
   .sidebar-header { padding: 14px 16px 10px; border-bottom: 1px solid var(--parchment-shadow); text-align: center; background: var(--parchment); }
@@ -170,15 +166,14 @@
   .history-list::-webkit-scrollbar { width: 4px; }
   .history-list::-webkit-scrollbar-track { background: transparent; }
   .history-list::-webkit-scrollbar-thumb { background: var(--crimson-deep); border-radius: 2px; }
-  
   .history-item { padding: 10px; background: var(--parchment); border-left: 3px solid var(--crimson); margin-bottom: 8px; font-family: 'Lora', serif; animation: slideIn 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
   @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
   .history-item .formula { font-size: 0.75rem; color: var(--ink-soft); font-style: italic; margin-bottom: 2px; }
   .history-item .total { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--crimson-deep); line-height: 1; }
   .history-item.crit { border-left-color: var(--crimson-bright); }
-  .history-item.crit .total { color: var(--crimson-bright); text-shadow: 0 0 8px rgba(209, 21, 21, 0.4); }
+  .history-item.crit .total { color: var(--crimson-bright); text-shadow: 0 0 8px rgba(209,21,21,0.4); }
   .history-item.crit::after { content: "★ CRÍTICO"; display: block; font-family: 'Playfair Display', serif; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--crimson-bright); margin-top: 4px; font-weight: 900; }
-  .history-item .breakdown { font-size: 0.75rem; color: var(--ink-soft); margin-top: 3px; font-family: 'Lora', serif; }
+  .history-item .breakdown { font-size: 0.75rem; color: var(--ink-soft); margin-top: 3px; }
   .history-empty { padding: 20px 16px; text-align: center; color: var(--ink-soft); font-style: italic; opacity: 0.6; font-size: 0.85rem; }
 
   #result-banner { position: fixed; top: 50%; left: calc(50% - 160px); transform: translate(-50%, -50%) scale(0.85); z-index: 100; pointer-events: none; opacity: 0; transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); text-align: center; min-width: 320px; max-width: 90%; }
@@ -191,15 +186,135 @@
   .banner-total { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--crimson); line-height: 1; margin: 4px 0 6px; text-shadow: 0 2px 0 var(--crimson-deep), 0 4px 8px rgba(0,0,0,0.2); }
   .banner-breakdown { font-family: 'Lora', serif; font-style: italic; font-size: 0.9rem; color: var(--ink-soft); }
   .banner-crit { margin-top: 8px; font-family: 'Playfair Display', serif; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.18em; color: var(--crimson-bright); animation: pulseCrit 1.2s ease-in-out infinite; }
+  @keyframes pulseCrit { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.03); } }
 
   .loading { position: fixed; inset: 0; background: var(--parchment); display: flex; align-items: center; justify-content: center; z-index: 200; flex-direction: column; gap: 16px; transition: opacity 0.5s ease; }
   .loading.hidden { opacity: 0; pointer-events: none; }
   .loading .text { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; color: var(--crimson-deep); letter-spacing: 0.2em; }
   .loading .spinner { width: 50px; height: 50px; border: 3px solid var(--parchment-deep); border-top-color: var(--crimson); border-radius: 50%; animation: spin 0.9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
+  
+  #welcome-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(27, 20, 16, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  #welcome-overlay.visible { opacity: 1; }
+  #welcome-overlay.hidden { opacity: 0; pointer-events: none; }
+
+  .welcome-frame {
+    background: var(--parchment);
+    border: 3px solid var(--crimson-deep);
+    max-width: 480px; width: 100%;
+    padding: 32px 36px 28px;
+    position: relative;
+    box-shadow: 0 0 0 1px var(--parchment), 0 0 0 5px var(--crimson), 0 24px 48px rgba(0,0,0,0.5);
+    animation: riseUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes riseUp { from { transform: translateY(30px) scale(0.96); } to { transform: translateY(0) scale(1); } }
+
+  .welcome-frame::before, .welcome-frame::after {
+    content: ""; position: absolute; width: 20px; height: 20px; border: 2px solid var(--crimson-deep);
+  }
+  .welcome-frame::before { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+  .welcome-frame::after { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+
+  .welcome-ornament {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .welcome-frame h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.6rem;
+    color: var(--crimson-deep);
+    text-align: center;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  .welcome-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  .welcome-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--crimson-deep), transparent);
+    margin-bottom: 22px;
+    opacity: 0.4;
+  }
+
+  .welcome-steps { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+
+  .welcome-step {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--parchment-deep);
+    border-left: 3px solid var(--crimson);
+    padding: 10px 14px;
+  }
+
+  .step-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--crimson); color: var(--parchment);
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  .step-text {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .step-text strong {
+    color: var(--crimson-deep);
+    font-weight: 600;
+  }
+
+  .welcome-actions {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+
+  #welcome-start {
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.9rem;
+    background: var(--crimson); color: var(--parchment);
+    border: 2px solid var(--crimson-deep); padding: 12px 36px;
+    cursor: pointer; width: 100%;
+    box-shadow: 0 3px 0 var(--crimson-deep), 0 6px 14px var(--shadow);
+    transition: all 0.15s ease;
+  }
+  #welcome-start:hover { background: var(--crimson-bright); transform: translateY(-1px); box-shadow: 0 4px 0 var(--crimson-deep), 0 8px 18px var(--shadow); }
+  #welcome-start:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--crimson-deep); }
+
+  .welcome-skip {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Lora', serif; font-size: 0.78rem;
+    color: var(--ink-soft); cursor: pointer;
+  }
+  .welcome-skip input { accent-color: var(--crimson); cursor: pointer; }
+
+  
   @media (max-width: 900px) {
     .main-content { flex-direction: column; }
-    aside.sidebar { display: none; } 
+    aside.sidebar { display: none; }
     .brand { margin-right: 0; width: 100%; justify-content: center; margin-bottom: 5px; }
     .hud-row { gap: 8px; padding-bottom: 4px; }
     .die-btn { width: 44px; height: 44px; }
@@ -207,26 +322,67 @@
     #result-banner { left: 50%; transform: translate(-50%, -50%) scale(0.8); }
     #result-banner.show { transform: translate(-50%, -50%) scale(0.95); }
     .table-wrap { min-height: 50vh; }
+    .welcome-frame { padding: 24px 20px 22px; }
+    .welcome-frame h2 { font-size: 1.3rem; }
   }
 
   @media (max-height: 500px) and (orientation: landscape) {
     header.hud { padding: 6px 10px; max-height: 50vh; }
     .brand { display: none; }
-    .selection-display { display: none; } 
+    .selection-display { display: none; }
     .die-btn { width: 38px; height: 38px; }
     .btn { height: 32px; padding: 4px 12px; font-size: 0.7rem; }
     .mod-input-wrap { height: 28px; }
     #result-banner.show { transform: translate(-50%, -50%) scale(0.7); }
+    .welcome-frame { padding: 16px; max-height: 90vh; overflow-y: auto; }
   }
-
 </style>
 </head>
 <body>
+
 
 <div class="loading" id="loading">
   <div class="spinner"></div>
   <div class="text">Convocando os Dados...</div>
 </div>
+
+
+<div id="welcome-overlay" class="hidden">
+  <div class="welcome-frame">
+    <div class="welcome-ornament">⚔</div>
+    <h2>Arcane Dice</h2>
+    <p class="welcome-subtitle">O grimório dos dados — física real, resultados reais</p>
+    <div class="welcome-divider"></div>
+    <div class="welcome-steps">
+      <div class="welcome-step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Selecione os dados</strong> clicando nos ícones do menu. Cada clique adiciona um dado à convocação.
+        </div>
+      </div>
+      <div class="welcome-step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Role</strong> com o botão ⚔ Rolar, ou pressione <strong>Espaço / Enter</strong> no teclado.
+        </div>
+      </div>
+      <div class="welcome-step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Clique com o botão direito</strong> num dado selecionado para remover uma unidade. Use o campo <em>Modificador</em> para bônus ou penalidades.
+        </div>
+      </div>
+    </div>
+    <div class="welcome-actions">
+      <button id="welcome-start">Começar a Jogar</button>
+      <label class="welcome-skip">
+        <input type="checkbox" id="dont-show-again" />
+        Não mostrar novamente
+      </label>
+    </div>
+  </div>
+</div>
+
 
 <div class="app">
   <header class="hud">
@@ -241,9 +397,7 @@
           <div class="tag">D&amp;D Roller · Tomo de Sortes</div>
         </div>
       </div>
-
       <div class="dice-selector" id="dice-selector"></div>
-
       <div class="modifier-block">
         <label>Modificador</label>
         <div class="mod-input-wrap">
@@ -252,13 +406,11 @@
           <button id="mod-plus">+</button>
         </div>
       </div>
-
       <div class="actions">
         <button class="btn btn-primary" id="roll-btn">⚔ Rolar</button>
         <button class="btn btn-secondary" id="clear-btn">Limpar</button>
       </div>
     </div>
-
     <div class="selection-display" id="selection-display">
       <span class="label">Convocação Atual:</span>
       <span class="formula" id="formula-text"><span class="empty">— nenhum dado selecionado —</span></span>
@@ -269,7 +421,6 @@
     <div class="table-wrap">
       <div id="canvas-container"></div>
     </div>
-
     <aside class="sidebar">
       <div class="sidebar-header">
         <h2>Crônica de Rolagens</h2>
@@ -295,38 +446,264 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
 
 <script>
-
 (() => {
 'use strict';
 
-const COLORS = { parchment: 0xF5EFE0, parchmentDeep: 0xECE3CF, felt: 0x4A4540, crimson: 0xB30000, crimsonDeep: 0x7A0000, crimsonBright: 0xD11515, ink: 0x1B1410, diceFace: 0xF7F2E5 };
-const PHYSICS = { gravity: -45, diceMass: 1.5, rollImpulse: 15, spinImpulse: 25, sleepThreshold: 0.1, sleepTimeLimit: 0.3, restitution: 0.3, friction: 0.6 };
+
+
+
+const SFX = {
+  _ctx: null,
+
+  _ensure() {
+    if (!this._ctx) {
+      this._ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (this._ctx.state === 'suspended') this._ctx.resume();
+    return this._ctx;
+  },
+
+  
+  roll() {
+    try {
+      const ctx = this._ensure();
+      const duration = 0.35;
+      const bufSize = Math.floor(ctx.sampleRate * duration);
+      const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) {
+        
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 1.8);
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buffer;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(900, ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(250, ctx.currentTime + duration);
+      filter.Q.value = 3;
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.55, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+      src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+      src.start();
+    } catch(e) {}
+  },
+
+  
+  land(intensity = 0.5) {
+    try {
+      const ctx = this._ensure();
+      const t = ctx.currentTime;
+
+      
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(110 + intensity * 60, t);
+      osc.frequency.exponentialRampToValueAtTime(35, t + 0.12);
+
+      
+      const click = ctx.createOscillator();
+      click.type = 'square';
+      click.frequency.value = 800;
+
+      const gainMain = ctx.createGain();
+      gainMain.gain.setValueAtTime(intensity * 0.55, t);
+      gainMain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+
+      const gainClick = ctx.createGain();
+      gainClick.gain.setValueAtTime(intensity * 0.15, t);
+      gainClick.gain.exponentialRampToValueAtTime(0.001, t + 0.025);
+
+      osc.connect(gainMain); gainMain.connect(ctx.destination);
+      click.connect(gainClick); gainClick.connect(ctx.destination);
+      osc.start(t); osc.stop(t + 0.14);
+      click.start(t); click.stop(t + 0.025);
+    } catch(e) {}
+  },
+
+  
+  crit() {
+    try {
+      const ctx = this._ensure();
+      
+      const notes = [220, 261.6, 329.6, 392, 523.2, 659.3];
+      notes.forEach((freq, i) => {
+        const startTime = ctx.currentTime + i * 0.09;
+
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.value = freq;
+
+        const osc2 = ctx.createOscillator(); 
+        osc2.type = 'triangle';
+        osc2.frequency.value = freq * 2;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(3000, startTime);
+        filter.frequency.exponentialRampToValueAtTime(800, startTime + 0.45);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0, startTime);
+        gain.gain.linearRampToValueAtTime(0.18, startTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.45);
+
+        osc.connect(filter); osc2.connect(filter);
+        filter.connect(gain); gain.connect(ctx.destination);
+        osc.start(startTime); osc.stop(startTime + 0.45);
+        osc2.start(startTime); osc2.stop(startTime + 0.45);
+      });
+
+      
+      setTimeout(() => {
+        try {
+          const rCtx = this._ensure();
+          const rDur = 0.8;
+          const rBuf = rCtx.createBuffer(1, Math.floor(rCtx.sampleRate * rDur), rCtx.sampleRate);
+          const rData = rBuf.getChannelData(0);
+          for (let i = 0; i < rData.length; i++) rData[i] = (Math.random() * 2 - 1) * Math.pow(1 - i/rData.length, 2.5);
+          const rSrc = rCtx.createBufferSource(); rSrc.buffer = rBuf;
+          const rFilter = rCtx.createBiquadFilter(); rFilter.type = 'bandpass'; rFilter.frequency.value = 1200; rFilter.Q.value = 8;
+          const rGain = rCtx.createGain(); rGain.gain.setValueAtTime(0.08, rCtx.currentTime); rGain.gain.exponentialRampToValueAtTime(0.001, rCtx.currentTime + rDur);
+          rSrc.connect(rFilter); rFilter.connect(rGain); rGain.connect(rCtx.destination); rSrc.start();
+        } catch(e) {}
+      }, notes.length * 90);
+    } catch(e) {}
+  }
+};
+
+
+
+
+function generateFavicon() {
+  const size = 64;
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  
+  ctx.fillStyle = '#F5EFE0';
+  ctx.fillRect(0, 0, size, size);
+
+  
+  ctx.strokeStyle = '#B30000';
+  ctx.fillStyle = '#B30000';
+  ctx.lineWidth = 2.5;
+
+  
+  const cx = size / 2, cy = size / 2, r = 26;
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (i * Math.PI) / 3 - Math.PI / 6;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#B30000';
+  ctx.fill();
+
+  
+  ctx.fillStyle = '#F5EFE0';
+  ctx.font = 'bold 22px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('20', cx, cy + 1);
+
+  
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  link.href = canvas.toDataURL('image/png');
+  document.head.appendChild(link);
+
+  
+  const apple = document.createElement('link');
+  apple.rel = 'apple-touch-icon';
+  apple.href = canvas.toDataURL('image/png');
+  document.head.appendChild(apple);
+}
+
+
+
+
+function setupWelcome() {
+  const overlay = document.getElementById('welcome-overlay');
+  const startBtn = document.getElementById('welcome-start');
+  const dontShow = document.getElementById('dont-show-again');
+
+  const shouldSkip = localStorage.getItem('arcane-dice-skip-welcome') === 'true';
+
+  if (!shouldSkip) {
+    
+    setTimeout(() => {
+      overlay.classList.remove('hidden');
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+    }, 600);
+  }
+
+  function closeWelcome() {
+    if (dontShow.checked) {
+      localStorage.setItem('arcane-dice-skip-welcome', 'true');
+    }
+    overlay.classList.remove('visible');
+    setTimeout(() => overlay.classList.add('hidden'), 500);
+    
+    SFX._ensure();
+  }
+
+  startBtn.addEventListener('click', closeWelcome);
+
+  
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeWelcome();
+  });
+}
+
+
+
+
+const COLORS = {
+  parchment: 0xF5EFE0, parchmentDeep: 0xECE3CF, felt: 0x4A4540,
+  crimson: 0xB30000, crimsonDeep: 0x7A0000, crimsonBright: 0xD11515,
+  ink: 0x1B1410, diceFace: 0xF7F2E5
+};
+const PHYSICS = {
+  gravity: -45, diceMass: 1.5, rollImpulse: 15, spinImpulse: 25,
+  sleepThreshold: 0.1, sleepTimeLimit: 0.3, restitution: 0.3, friction: 0.6
+};
 const DICE_TYPES = ['d2','d4','d6','d8','d10','d12','d20','d100'];
 
 const selection = {}; DICE_TYPES.forEach(t => selection[t] = 0);
-const liveDice = []; 
+const liveDice = [];
 let rolling = false, rollResolved = false, rollStartTime = 0, history = [], modifier = 0;
+
 
 window.divineIntervention = false;
 let clickCount = 0;
 document.addEventListener('DOMContentLoaded', () => {
   const brandTitle = document.getElementById('brand-title');
-  if(!brandTitle) return;
-
+  if (!brandTitle) return;
   brandTitle.setAttribute('role', 'presentation');
   brandTitle.setAttribute('aria-hidden', 'true');
-
   brandTitle.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     clickCount++;
     if (clickCount === 3) {
       window.divineIntervention = !window.divineIntervention;
       clickCount = 0;
-      console.log("%c INTERVENÇÃO ATIVA: " + window.divineIntervention, "color: #D11515; font-weight: bold;");
+      console.log('%c⚡ INTERVENÇÃO DIVINA: ' + window.divineIntervention, 'color:#D11515;font-weight:bold;font-size:14px');
     }
-    setTimeout(() => clickCount = 0, 800); 
+    setTimeout(() => clickCount = 0, 800);
   });
 });
+
+
+
 
 const container = document.getElementById('canvas-container');
 let scene, camera, renderer, world, particleGroups = [];
@@ -339,23 +716,26 @@ function initScene() {
 
   const w = container.clientWidth, h = container.clientHeight;
   const isMobile = window.innerWidth < 900;
-  const fov = isMobile ? 55 : 45;
-  const camY = isMobile ? 30 : 24;
 
-  camera = new THREE.PerspectiveCamera(fov, w / h, 0.1, 200);
-  camera.position.set(0, camY, 14);
+  camera = new THREE.PerspectiveCamera(isMobile ? 55 : 45, w / h, 0.1, 200);
+  camera.position.set(0, isMobile ? 30 : 24, 14);
   camera.lookAt(0, 0, 0);
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
   renderer.setSize(w, h);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputEncoding = THREE.sRGBEncoding;
   container.appendChild(renderer.domElement);
 
   const amb = new THREE.AmbientLight(0xffe9c2, 0.4); scene.add(amb);
-  const key = new THREE.DirectionalLight(0xfff2d6, 1.1); key.position.set(8, 18, 10); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.camera.near = 1; key.shadow.camera.far = 50; key.shadow.camera.left = -16; key.shadow.camera.right = 16; key.shadow.camera.top = 16; key.shadow.camera.bottom = -16; key.shadow.bias = -0.0008; scene.add(key);
+  const key = new THREE.DirectionalLight(0xfff2d6, 1.1);
+  key.position.set(8, 18, 10); key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024); key.shadow.camera.near = 1; key.shadow.camera.far = 50;
+  key.shadow.camera.left = -16; key.shadow.camera.right = 16;
+  key.shadow.camera.top = 16; key.shadow.camera.bottom = -16; key.shadow.bias = -0.0008;
+  scene.add(key);
   const fill = new THREE.DirectionalLight(0xc0a880, 0.5); fill.position.set(-12, 8, -6); scene.add(fill);
   const rim = new THREE.PointLight(0xb30000, 0.7, 30); rim.position.set(0, 4, -10); scene.add(rim);
 
@@ -365,16 +745,14 @@ function initScene() {
   const table = new THREE.Mesh(tableGeom, tableMat);
   table.rotation.x = -Math.PI / 2; table.receiveShadow = true; scene.add(table);
 
-  const borderGeom = new THREE.BoxGeometry(tableW, 0.6, 0.4);
   const borderMat = new THREE.MeshStandardMaterial({ color: COLORS.crimsonDeep, roughness: 0.7, metalness: 0.1 });
-  ['n', 's'].forEach((d) => { const m = new THREE.Mesh(borderGeom, borderMat); m.position.set(0, 0.3, d === 'n' ? -tableH/2 : tableH/2); m.castShadow = m.receiveShadow = true; scene.add(m); });
-  const borderGeomY = new THREE.BoxGeometry(0.4, 0.6, tableH);
-  ['e', 'w'].forEach((d) => { const m = new THREE.Mesh(borderGeomY, borderMat); m.position.set(d === 'e' ? tableW/2 : -tableW/2, 0.3, 0); m.castShadow = m.receiveShadow = true; scene.add(m); });
+  ['n','s'].forEach(d => { const m = new THREE.Mesh(new THREE.BoxGeometry(tableW, 0.6, 0.4), borderMat); m.position.set(0, 0.3, d === 'n' ? -tableH/2 : tableH/2); m.castShadow = m.receiveShadow = true; scene.add(m); });
+  ['e','w'].forEach(d => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.6, tableH), borderMat); m.position.set(d === 'e' ? tableW/2 : -tableW/2, 0.3, 0); m.castShadow = m.receiveShadow = true; scene.add(m); });
 
   world = new CANNON.World();
   world.gravity.set(0, PHYSICS.gravity, 0);
-  world.broadphase = new CANNON.SAPBroadphase(world); 
-  world.solver.iterations = 50; 
+  world.broadphase = new CANNON.SAPBroadphase(world);
+  world.solver.iterations = 50;
   world.solver.tolerance = 0.001;
   world.allowSleep = true;
 
@@ -388,217 +766,394 @@ function initScene() {
   world.addBody(floorBody);
 
   const wallShape = new CANNON.Plane();
-  const walls = [ { pos: [0, 0, -tableH/2 + 0.2], rot: [0, 0, 0] }, { pos: [0, 0, tableH/2 - 0.2], rot: [0, Math.PI, 0] }, { pos: [-tableW/2 + 0.2, 0, 0], rot: [0, Math.PI/2, 0] }, { pos: [tableW/2 - 0.2, 0, 0], rot: [0, -Math.PI/2, 0] } ];
-  walls.forEach(w => { const b = new CANNON.Body({ mass: 0, material: floorMat }); b.addShape(wallShape); b.position.set(...w.pos); b.quaternion.setFromEuler(...w.rot); world.addBody(b); });
+  [
+    { pos: [0,0,-tableH/2+0.2], rot:[0,0,0] },
+    { pos: [0,0,tableH/2-0.2],  rot:[0,Math.PI,0] },
+    { pos: [-tableW/2+0.2,0,0], rot:[0,Math.PI/2,0] },
+    { pos: [tableW/2-0.2,0,0],  rot:[0,-Math.PI/2,0] }
+  ].forEach(w => {
+    const b = new CANNON.Body({ mass: 0, material: floorMat });
+    b.addShape(wallShape); b.position.set(...w.pos); b.quaternion.setFromEuler(...w.rot);
+    world.addBody(b);
+  });
 
   scene.userData.diceMat = diceMat;
-  
+
   window.addEventListener('resize', () => {
-    if(!camera || !renderer) return;
+    if (!camera || !renderer) return;
     const w = container.clientWidth, h = container.clientHeight;
-    camera.aspect = w / h;
-    const isMobile = window.innerWidth < 900;
-    camera.fov = isMobile ? 55 : 45;
-    camera.position.y = isMobile ? 30 : 24;
+    const mob = window.innerWidth < 900;
+    camera.aspect = w / h; camera.fov = mob ? 55 : 45;
+    camera.position.y = mob ? 30 : 24;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
   });
 }
 
 function generateTableTexture() {
-  const size = 512, canvas = document.createElement('canvas'); canvas.width = canvas.height = size; const ctx = canvas.getContext('2d');
-  const grd = ctx.createRadialGradient(size/2, size/2, size*0.1, size/2, size/2, size*0.7);
+  const size = 512, canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  const grd = ctx.createRadialGradient(size/2,size/2,size*0.1,size/2,size/2,size*0.7);
   grd.addColorStop(0, '#5C5650'); grd.addColorStop(0.7, '#4A4540'); grd.addColorStop(1, '#3A3530');
-  ctx.fillStyle = grd; ctx.fillRect(0, 0, size, size);
-  const imgData = ctx.getImageData(0, 0, size, size), data = imgData.data;
-  for (let i = 0; i < data.length; i += 4) { const n = (Math.random() - 0.5) * 16; data[i] = Math.max(0, Math.min(255, data[i] + n)); data[i+1] = Math.max(0, Math.min(255, data[i+1] + n)); data[i+2] = Math.max(0, Math.min(255, data[i+2] + n)); }
+  ctx.fillStyle = grd; ctx.fillRect(0,0,size,size);
+
+  const imgData = ctx.getImageData(0,0,size,size), data = imgData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const n = (Math.random()-0.5)*16;
+    data[i] = Math.max(0,Math.min(255,data[i]+n));
+    data[i+1] = Math.max(0,Math.min(255,data[i+1]+n));
+    data[i+2] = Math.max(0,Math.min(255,data[i+2]+n));
+  }
   ctx.putImageData(imgData, 0, 0);
-  const tex = new THREE.CanvasTexture(canvas); 
-  tex.encoding = THREE.sRGBEncoding; 
-  tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8; 
+
+  
+  ctx.strokeStyle = 'rgba(179,0,0,0.1)'; ctx.lineWidth = 2;
+  ctx.strokeRect(size*0.05,size*0.05,size*0.9,size*0.9);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.encoding = THREE.sRGBEncoding;
+  tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8;
   tex.needsUpdate = true;
   return tex;
 }
+
+
+
 
 function buildPolyhedron(verts, faces, faceValues) {
   const shapeCenter = new THREE.Vector3();
   verts.forEach(v => shapeCenter.add(new THREE.Vector3(...v)));
   shapeCenter.divideScalar(verts.length);
+
   const cleanFaces = faces.map(face => {
-    const v0 = new THREE.Vector3(...verts[face[0]]), v1 = new THREE.Vector3(...verts[face[1]]), v2 = new THREE.Vector3(...verts[face[2]]);
-    const e1 = new THREE.Vector3().subVectors(v1, v0), e2 = new THREE.Vector3().subVectors(v2, v0);
-    const n = new THREE.Vector3().crossVectors(e1, e2).normalize();
+    const v0 = new THREE.Vector3(...verts[face[0]]);
+    const v1 = new THREE.Vector3(...verts[face[1]]);
+    const v2 = new THREE.Vector3(...verts[face[2]]);
+    const e1 = new THREE.Vector3().subVectors(v1,v0), e2 = new THREE.Vector3().subVectors(v2,v0);
+    const n = new THREE.Vector3().crossVectors(e1,e2).normalize();
     const toFace = new THREE.Vector3().subVectors(v0, shapeCenter);
-    if (n.dot(toFace) < 0) return face.slice().reverse();
-    return face;
+    return n.dot(toFace) < 0 ? face.slice().reverse() : face;
   });
-  const positions = [], uvs = [], indices = [], faceNormals = []; let groupStart = 0; const geom = new THREE.BufferGeometry();
+
+  const positions=[], uvs=[], indices=[], faceNormals=[];
+  let groupStart = 0;
+  const geom = new THREE.BufferGeometry();
+
   cleanFaces.forEach((face, fi) => {
     const faceVerts = face.map(idx => new THREE.Vector3(...verts[idx]));
-    const e1 = new THREE.Vector3().subVectors(faceVerts[1], faceVerts[0]), e2 = new THREE.Vector3().subVectors(faceVerts[2], faceVerts[0]);
-    const n = new THREE.Vector3().crossVectors(e1, e2).normalize(); faceNormals.push([n.x, n.y, n.z]);
-    const u_axis = e1.clone().normalize(), v_axis = new THREE.Vector3().crossVectors(n, u_axis).normalize(), center = new THREE.Vector3();
+    const e1 = new THREE.Vector3().subVectors(faceVerts[1],faceVerts[0]);
+    const e2 = new THREE.Vector3().subVectors(faceVerts[2],faceVerts[0]);
+    const n = new THREE.Vector3().crossVectors(e1,e2).normalize();
+    faceNormals.push([n.x, n.y, n.z]);
+
+    const u_axis = e1.clone().normalize();
+    const v_axis = new THREE.Vector3().crossVectors(n,u_axis).normalize();
+    const center = new THREE.Vector3();
     faceVerts.forEach(v => center.add(v)); center.divideScalar(faceVerts.length);
-    const local2D = faceVerts.map(v => { const d = new THREE.Vector3().subVectors(v, center); return [d.dot(u_axis), d.dot(v_axis)]; });
-    let maxDist = 0; local2D.forEach(([u,v]) => { const dist = Math.sqrt(u*u + v*v); if (dist > maxDist) maxDist = dist; });
-    const range = maxDist * 2 || 1; 
+    const local2D = faceVerts.map(v => { const d = new THREE.Vector3().subVectors(v,center); return [d.dot(u_axis), d.dot(v_axis)]; });
+
+    let maxDist = 0;
+    local2D.forEach(([u,v]) => { const d = Math.sqrt(u*u+v*v); if (d > maxDist) maxDist = d; });
+    const range = maxDist * 2 || 1;
+
     const baseIdx = positions.length / 3;
-    faceVerts.forEach((v, vi) => { positions.push(v.x, v.y, v.z); const [u2, v2] = local2D[vi]; uvs.push(0.5 + (u2 / range) * 0.9, 0.5 + (v2 / range) * 0.9); });
-    let triCount = 0; for (let i = 1; i < face.length - 1; i++) { indices.push(baseIdx, baseIdx + i, baseIdx + i + 1); triCount += 3; }
+    faceVerts.forEach((v, vi) => {
+      positions.push(v.x, v.y, v.z);
+      const [u2,v2] = local2D[vi];
+      uvs.push(0.5+(u2/range)*0.9, 0.5+(v2/range)*0.9);
+    });
+
+    let triCount = 0;
+    for (let i = 1; i < face.length-1; i++) { indices.push(baseIdx, baseIdx+i, baseIdx+i+1); triCount += 3; }
     geom.addGroup(groupStart, triCount, fi); groupStart += triCount;
   });
-  geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)); 
-  geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2)); 
-  geom.setIndex(indices); geom.computeVertexNormals(); 
-  const cannonVerts = verts.map(v => new CANNON.Vec3(...v)), cannonFaces = cleanFaces.map(f => f.slice()), cannonShape = new CANNON.ConvexPolyhedron(cannonVerts, cannonFaces);
+
+  geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+  geom.setIndex(indices); geom.computeVertexNormals();
+
+  const cannonVerts = verts.map(v => new CANNON.Vec3(...v));
+  const cannonFaces = cleanFaces.map(f => f.slice());
+  const cannonShape = new CANNON.ConvexPolyhedron(cannonVerts, cannonFaces);
   return { geom, faceNormals, faceValues, cannonShape };
 }
 
-function buildD2() { const radius = 0.95, thickness = 0.28, segs = 28, geom = new THREE.CylinderGeometry(radius, radius, thickness, segs, 1), faceNormals = [[0, 0, 0], [0, 1, 0], [0, -1, 0]], faceValues = [0, 1, 2], cannonShape = new CANNON.Cylinder(radius, radius, thickness, segs), quat = new CANNON.Quaternion(); quat.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2); return { geom, faceNormals, faceValues, cannonShape, cannonOffset: null, cannonQuat: quat, sizeRadius: radius }; }
-function buildD4() { const a = 1 / Math.sqrt(3), verts = [[ a, a, a], [-a, -a, a], [-a, a, -a], [ a, -a, -a]], faces = [[0, 1, 2], [0, 3, 1], [0, 2, 3], [1, 3, 2]], faceValues = [1, 2, 3, 4]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: 1 }; }
-function buildD6() { const s = 0.55, v = [[ s, s, s], [-s, s, s], [-s, -s, s], [ s, -s, s], [ s, s, -s], [-s, s, -s], [-s, -s, -s], [ s, -s, -s]], faces = [[0, 1, 2, 3], [4, 7, 6, 5], [0, 3, 7, 4], [1, 5, 6, 2], [0, 4, 5, 1], [2, 6, 7, 3]], faceValues = [3, 4, 1, 6, 2, 5]; return { ...buildPolyhedron(v, faces, faceValues), sizeRadius: s * Math.sqrt(3) }; }
-function buildD8() { const r = 1, v = [[ 0, r, 0], [ 0, -r, 0], [ r, 0, 0], [-r, 0, 0], [ 0, 0, r], [ 0, 0, -r]], faces = [[0, 2, 4], [0, 4, 3], [0, 3, 5], [0, 5, 2], [1, 4, 2], [1, 3, 4], [1, 5, 3], [1, 2, 5]], faceValues = [1, 2, 3, 4, 8, 7, 6, 5]; return { ...buildPolyhedron(v, faces, faceValues), sizeRadius: r }; }
-function buildD10(opts = {}) { const r = 0.93, e = 0.16, h = 1.0, verts = [[0, h, 0], [0, -h, 0]]; for (let i = 0; i < 10; i++) { const ang = (i * Math.PI) / 5, y = (i % 2 === 0) ? +e : -e; verts.push([r * Math.cos(ang), y, r * Math.sin(ang)]); } const faces = []; for (let i = 0; i < 5; i++) faces.push([0, 2 + (2*i + 2) % 10, 2 + (2*i + 1) % 10, 2 + (2*i) % 10]); for (let i = 0; i < 5; i++) faces.push([1, 2 + (2*i + 1) % 10, 2 + (2*i + 2) % 10, 2 + (2*i + 3) % 10]); const faceValues = opts.tens ? [0, 70, 40, 10, 80, 50, 20, 90, 60, 30] : [0, 7, 4, 1, 8, 5, 2, 9, 6, 3]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: h, isTens: !!opts.tens }; }
-function buildD12() { const phi = (1 + Math.sqrt(5)) / 2, a = 1 / Math.sqrt(3), b = a / phi, c = a * phi, verts = [[ a, a, a], [ a, a, -a], [ a, -a, a], [ a, -a, -a], [-a, a, a], [-a, a, -a], [-a, -a, a], [-a, -a, -a], [ 0, b, c], [ 0, b, -c], [ 0, -b, c], [ 0, -b, -c], [ b, c, 0], [ b, -c, 0], [-b, c, 0], [-b, -c, 0], [ c, 0, b], [ c, 0, -b], [-c, 0, b], [-c, 0, -b]], faces = [[ 0, 16, 2, 10, 8], [ 0, 8, 4, 14, 12], [ 0, 12, 1, 17, 16], [ 1, 12, 14, 5, 9], [ 1, 9, 11, 3, 17], [ 2, 16, 17, 3, 13], [ 2, 13, 15, 6, 10], [ 3, 11, 7, 15, 13], [ 4, 8, 10, 6, 18], [ 4, 18, 19, 5, 14], [ 5, 19, 7, 11, 9], [ 6, 15, 7, 19, 18]], faceValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: 1 }; }
-function buildD20() { const phi = (1 + Math.sqrt(5)) / 2, norm = 1 / Math.sqrt(1 + phi*phi), a = norm, b = phi * norm, verts = [[-a, b, 0], [ a, b, 0], [-a, -b, 0], [ a, -b, 0], [ 0, -a, b], [ 0, a, b], [ 0, -a, -b], [ 0, a, -b], [ b, 0, -a], [ b, 0, a], [-b, 0, -a], [-b, 0, a]], faces = [[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]], faceValues = [20, 8, 14, 1, 9, 11, 13, 17, 5, 4, 3, 18, 16, 12, 19, 10, 7, 6, 2, 15]; return { ...buildPolyhedron(verts, faces, faceValues), sizeRadius: 1 }; }
+function buildD2() { const r=0.95,t=0.28,s=28,geom=new THREE.CylinderGeometry(r,r,t,s,1),faceNormals=[[0,0,0],[0,1,0],[0,-1,0]],faceValues=[0,1,2],cannonShape=new CANNON.Cylinder(r,r,t,s),quat=new CANNON.Quaternion(); quat.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2); return {geom,faceNormals,faceValues,cannonShape,cannonOffset:null,cannonQuat:quat,sizeRadius:r}; }
+function buildD4() { const a=1/Math.sqrt(3),verts=[[a,a,a],[-a,-a,a],[-a,a,-a],[a,-a,-a]],faces=[[0,1,2],[0,3,1],[0,2,3],[1,3,2]],fv=[1,2,3,4]; return {...buildPolyhedron(verts,faces,fv),sizeRadius:1}; }
+function buildD6() { const s=0.55,v=[[s,s,s],[-s,s,s],[-s,-s,s],[s,-s,s],[s,s,-s],[-s,s,-s],[-s,-s,-s],[s,-s,-s]],faces=[[0,1,2,3],[4,7,6,5],[0,3,7,4],[1,5,6,2],[0,4,5,1],[2,6,7,3]],fv=[3,4,1,6,2,5]; return {...buildPolyhedron(v,faces,fv),sizeRadius:s*Math.sqrt(3)}; }
+function buildD8() { const r=1,v=[[0,r,0],[0,-r,0],[r,0,0],[-r,0,0],[0,0,r],[0,0,-r]],faces=[[0,2,4],[0,4,3],[0,3,5],[0,5,2],[1,4,2],[1,3,4],[1,5,3],[1,2,5]],fv=[1,2,3,4,8,7,6,5]; return {...buildPolyhedron(v,faces,fv),sizeRadius:r}; }
+function buildD10(opts={}) { const r=0.93,e=0.16,h=1.0,verts=[[0,h,0],[0,-h,0]]; for(let i=0;i<10;i++){const ang=(i*Math.PI)/5,y=(i%2===0)?+e:-e;verts.push([r*Math.cos(ang),y,r*Math.sin(ang)]);} const faces=[]; for(let i=0;i<5;i++)faces.push([0,2+(2*i+2)%10,2+(2*i+1)%10,2+(2*i)%10]); for(let i=0;i<5;i++)faces.push([1,2+(2*i+1)%10,2+(2*i+2)%10,2+(2*i+3)%10]); const fv=opts.tens?[0,70,40,10,80,50,20,90,60,30]:[0,7,4,1,8,5,2,9,6,3]; return {...buildPolyhedron(verts,faces,fv),sizeRadius:h,isTens:!!opts.tens}; }
+function buildD12() { const phi=(1+Math.sqrt(5))/2,a=1/Math.sqrt(3),b=a/phi,c=a*phi,verts=[[a,a,a],[a,a,-a],[a,-a,a],[a,-a,-a],[-a,a,a],[-a,a,-a],[-a,-a,a],[-a,-a,-a],[0,b,c],[0,b,-c],[0,-b,c],[0,-b,-c],[b,c,0],[b,-c,0],[-b,c,0],[-b,-c,0],[c,0,b],[c,0,-b],[-c,0,b],[-c,0,-b]],faces=[[0,16,2,10,8],[0,8,4,14,12],[0,12,1,17,16],[1,12,14,5,9],[1,9,11,3,17],[2,16,17,3,13],[2,13,15,6,10],[3,11,7,15,13],[4,8,10,6,18],[4,18,19,5,14],[5,19,7,11,9],[6,15,7,19,18]],fv=[1,2,3,4,5,6,7,8,9,10,11,12]; return {...buildPolyhedron(verts,faces,fv),sizeRadius:1}; }
+function buildD20() { const phi=(1+Math.sqrt(5))/2,norm=1/Math.sqrt(1+phi*phi),a=norm,b=phi*norm,verts=[[-a,b,0],[a,b,0],[-a,-b,0],[a,-b,0],[0,-a,b],[0,a,b],[0,-a,-b],[0,a,-b],[b,0,-a],[b,0,a],[-b,0,-a],[-b,0,a]],faces=[[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]],fv=[20,8,14,1,9,11,13,17,5,4,3,18,16,12,19,10,7,6,2,15]; return {...buildPolyhedron(verts,faces,fv),sizeRadius:1}; }
 
-function makeFaceTexture(value, opts = {}) {
-  const size = 256, canvas = document.createElement('canvas'); canvas.width = canvas.height = size; const ctx = canvas.getContext('2d');
-  const grd = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size*0.6); grd.addColorStop(0, '#FDFAF0'); grd.addColorStop(1, '#F0E8D2'); ctx.fillStyle = grd; ctx.fillRect(0, 0, size, size);
-  ctx.fillStyle = 'rgba(120, 90, 50, 0.08)'; ctx.fillRect(0, 0, size, 8); ctx.fillRect(0, size-8, size, 8); ctx.fillRect(0, 0, 8, size); ctx.fillRect(size-8, 0, 8, size);
-  ctx.fillStyle = '#B30000'; ctx.strokeStyle = '#7A0000'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  const display = opts.display !== undefined ? opts.display : value.toString(); let fontSize = display.length === 1 ? 150 : (display.length === 2 ? 120 : 95);
-  ctx.font = `700 ${fontSize}px "Playfair Display", serif`; ctx.lineWidth = 4; const cx = size / 2, cy = size / 2; ctx.strokeText(display, cx, cy); ctx.fillText(display, cx, cy);
-  if (opts.underline) { ctx.lineWidth = 6; ctx.strokeStyle = '#B30000'; const underlineY = cy + fontSize * 0.4, underlineW = fontSize * 0.45; ctx.beginPath(); ctx.moveTo(cx - underlineW/2, underlineY); ctx.lineTo(cx + underlineW/2, underlineY); ctx.stroke(); }
-  const tex = new THREE.CanvasTexture(canvas); tex.encoding = THREE.sRGBEncoding; tex.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8; tex.needsUpdate = true; return tex;
+
+
+
+function makeFaceTexture(value, opts={}) {
+  const size=256, canvas=document.createElement('canvas'); canvas.width=canvas.height=size; const ctx=canvas.getContext('2d');
+  const grd=ctx.createRadialGradient(size/2,size/2,0,size/2,size/2,size*0.6); grd.addColorStop(0,'#FDFAF0'); grd.addColorStop(1,'#F0E8D2'); ctx.fillStyle=grd; ctx.fillRect(0,0,size,size);
+  ctx.fillStyle='rgba(120,90,50,0.08)'; ctx.fillRect(0,0,size,8); ctx.fillRect(0,size-8,size,8); ctx.fillRect(0,0,8,size); ctx.fillRect(size-8,0,8,size);
+  ctx.fillStyle='#B30000'; ctx.strokeStyle='#7A0000'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  const display=opts.display!==undefined?opts.display:value.toString(); let fontSize=display.length===1?150:(display.length===2?120:95);
+  ctx.font=`700 ${fontSize}px "Playfair Display", serif`; ctx.lineWidth=4; ctx.strokeText(display,size/2,size/2); ctx.fillText(display,size/2,size/2);
+  if(opts.underline){ctx.lineWidth=6;ctx.strokeStyle='#B30000';const uY=size/2+fontSize*0.4,uW=fontSize*0.45;ctx.beginPath();ctx.moveTo(size/2-uW/2,uY);ctx.lineTo(size/2+uW/2,uY);ctx.stroke();}
+  const tex=new THREE.CanvasTexture(canvas); tex.encoding=THREE.sRGBEncoding; tex.anisotropy=renderer?renderer.capabilities.getMaxAnisotropy():8; tex.needsUpdate=true; return tex;
 }
 
 function makeMaterialsForDie(faceValues, dieType) {
-  return faceValues.map((v, i) => {
-    let display = v.toString(), underline = false;
-    if (dieType === 'd100tens') display = v === 0 ? '00' : v.toString();
-    if (dieType === 'd10' || dieType === 'd100ones') display = v.toString();
-    if (dieType === 'd6' && (v === 6 || v === 9)) underline = true;
-    if (dieType === 'd8' && (v === 6)) underline = true;
-    if (dieType === 'd20' && (v === 6 || v === 9)) underline = true;
-    if (dieType === 'd12' && (v === 6 || v === 9)) underline = true;
-    if (dieType === 'd2' && i === 0) return new THREE.MeshStandardMaterial({ color: COLORS.diceFace, roughness: 0.55, metalness: 0.05 });
-    return new THREE.MeshStandardMaterial({ map: makeFaceTexture(v, { display, underline }), color: 0xffffff, roughness: 0.45, metalness: 0.05 }); 
+  return faceValues.map((v,i) => {
+    let display=v.toString(), underline=false;
+    if(dieType==='d100tens') display=v===0?'00':v.toString();
+    if(dieType==='d6'&&(v===6||v===9)) underline=true;
+    if(dieType==='d8'&&v===6) underline=true;
+    if(dieType==='d20'&&(v===6||v===9)) underline=true;
+    if(dieType==='d12'&&(v===6||v===9)) underline=true;
+    if(dieType==='d2'&&i===0) return new THREE.MeshStandardMaterial({color:COLORS.diceFace,roughness:0.55,metalness:0.05});
+    return new THREE.MeshStandardMaterial({map:makeFaceTexture(v,{display,underline}),color:0xffffff,roughness:0.45,metalness:0.05});
   });
 }
 
+
+
+
 class Die {
-  constructor(type, opts = {}) {
-    this.type = type; this.dieKind = opts.kind || type; this.partOfD100 = opts.partOfD100 || false; this.d100Role = opts.d100Role || null;
-    let def; switch (type) { case 'd2': def = buildD2(); break; case 'd4': def = buildD4(); break; case 'd6': def = buildD6(); break; case 'd8': def = buildD8(); break; case 'd10': def = buildD10({ tens: false }); break; case 'd10tens': def = buildD10({ tens: true }); break; case 'd12': def = buildD12(); break; case 'd20': def = buildD20(); break; default: throw new Error('Unknown die: ' + type); }
-    this.faceNormals = def.faceNormals; this.faceValues = def.faceValues; this.sizeRadius = def.sizeRadius; this.detectDir = (type === 'd4') ? new CANNON.Vec3(0, -1, 0) : new CANNON.Vec3(0, 1, 0);
-    const materials = makeMaterialsForDie(this.faceValues, type === 'd10tens' ? 'd100tens' : type);
-    this.mesh = new THREE.Mesh(def.geom, materials); this.mesh.castShadow = true; this.mesh.receiveShadow = false; scene.add(this.mesh);
-    const body = new CANNON.Body({ mass: PHYSICS.diceMass, material: scene.userData.diceMat, allowSleep: true, sleepSpeedLimit: PHYSICS.sleepThreshold, sleepTimeLimit: PHYSICS.sleepTimeLimit, linearDamping: 0.12, angularDamping: 0.18 });
-    this.cheatOffset = null; let cannonOffset = new CANNON.Vec3(0, 0, 0);
-    if (type === 'd20' && window.divineIntervention) { const n20 = def.faceNormals[0]; const pesoVicio = 0.10; cannonOffset.set(n20[0] * pesoVicio, n20[1] * pesoVicio, n20[2] * pesoVicio); this.cheatOffset = new CANNON.Vec3(cannonOffset.x, cannonOffset.y, cannonOffset.z); }
-    if (type === 'd2') body.addShape(def.cannonShape, cannonOffset, def.cannonQuat); else body.addShape(def.cannonShape, cannonOffset);
+  constructor(type, opts={}) {
+    this.type = type; this.partOfD100 = opts.partOfD100||false; this.d100Role = opts.d100Role||null;
+    let def;
+    switch(type) {
+      case 'd2': def=buildD2(); break; case 'd4': def=buildD4(); break;
+      case 'd6': def=buildD6(); break; case 'd8': def=buildD8(); break;
+      case 'd10': def=buildD10({tens:false}); break; case 'd10tens': def=buildD10({tens:true}); break;
+      case 'd12': def=buildD12(); break; case 'd20': def=buildD20(); break;
+      default: throw new Error('Unknown die: '+type);
+    }
+    this.faceNormals=def.faceNormals; this.faceValues=def.faceValues; this.sizeRadius=def.sizeRadius;
+    this.detectDir = type==='d4' ? new CANNON.Vec3(0,-1,0) : new CANNON.Vec3(0,1,0);
+
+    const materials = makeMaterialsForDie(this.faceValues, type==='d10tens'?'d100tens':type);
+    this.mesh = new THREE.Mesh(def.geom, materials);
+    this.mesh.castShadow = true; scene.add(this.mesh);
+
+    const body = new CANNON.Body({
+      mass: PHYSICS.diceMass, material: scene.userData.diceMat,
+      allowSleep: true, sleepSpeedLimit: PHYSICS.sleepThreshold,
+      sleepTimeLimit: PHYSICS.sleepTimeLimit, linearDamping: 0.12, angularDamping: 0.18
+    });
+
+    this.cheatOffset = null;
+    const cannonOffset = new CANNON.Vec3(0,0,0);
+    if(type==='d20' && window.divineIntervention) {
+      const n20 = def.faceNormals[0], p = 0.10;
+      cannonOffset.set(n20[0]*p, n20[1]*p, n20[2]*p);
+      this.cheatOffset = new CANNON.Vec3(cannonOffset.x, cannonOffset.y, cannonOffset.z);
+    }
+
+    if(type==='d2') body.addShape(def.cannonShape, cannonOffset, def.cannonQuat);
+    else body.addShape(def.cannonShape, cannonOffset);
+
     this.body = body; world.addBody(body);
-    this.rolling = false; this.resolved = false; this.rolledValue = null; this.upFaceIndex = null; this.critEffectSpawned = false;
+    this.resolved = false; this.rolledValue = null; this.upFaceIndex = null; this.critEffectSpawned = false;
+
+    
+    let lastLandTime = 0;
+    body.addEventListener('collide', (e) => {
+      const now = performance.now();
+      if (now - lastLandTime < 80) return; 
+      const impact = Math.abs(e.contact.getImpactVelocityAlongNormal());
+      if (impact > 1.5) {
+        SFX.land(Math.min(impact / 22, 1));
+        lastLandTime = now;
+      }
+    });
   }
-  setPosition(x, y, z) { this.body.position.set(x, y, z); this.mesh.position.set(x, y, z); }
-  randomizeRotation() { const q = new CANNON.Quaternion(); q.setFromEuler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2); this.body.quaternion.copy(q); this.mesh.quaternion.copy(q); }
-  applyRollImpulse() { const ang = Math.random() * Math.PI * 2, speed = PHYSICS.rollImpulse + Math.random() * 4; this.body.velocity.set(Math.cos(ang) * speed, 4 + Math.random() * 3, Math.sin(ang) * speed); this.body.angularVelocity.set((Math.random() - 0.5) * PHYSICS.spinImpulse, (Math.random() - 0.5) * PHYSICS.spinImpulse, (Math.random() - 0.5) * PHYSICS.spinImpulse); this.body.wakeUp(); }
-  syncMesh() { this.mesh.position.copy(this.body.position); this.mesh.quaternion.copy(this.body.quaternion); if (this.cheatOffset) { const localOffset = this.cheatOffset.clone(); this.body.quaternion.vmult(localOffset, localOffset); this.mesh.position.add(localOffset); } }
-  detectUpFace() { let maxDot = -Infinity, upIdx = -1; const local = new CANNON.Vec3(), world_n = new CANNON.Vec3(); for (let i = 0; i < this.faceNormals.length; i++) { const n = this.faceNormals[i]; if (n[0] === 0 && n[1] === 0 && n[2] === 0) continue; local.set(n[0], n[1], n[2]); this.body.quaternion.vmult(local, world_n); const dot = world_n.dot(this.detectDir); if (dot > maxDot) { maxDot = dot; upIdx = i; } } return upIdx; }
-  resolve() { if (this.resolved) return this.rolledValue; this.upFaceIndex = this.detectUpFace(); this.rolledValue = this.faceValues[this.upFaceIndex]; this.resolved = true; return this.rolledValue; }
-  destroy() { scene.remove(this.mesh); if (Array.isArray(this.mesh.material)) this.mesh.material.forEach(m => { if (m.map) m.map.dispose(); m.dispose(); }); else this.mesh.material.dispose(); this.mesh.geometry.dispose(); world.remove(this.body); }
+
+  setPosition(x,y,z) { this.body.position.set(x,y,z); this.mesh.position.set(x,y,z); }
+  randomizeRotation() { const q=new CANNON.Quaternion(); q.setFromEuler(Math.random()*Math.PI*2,Math.random()*Math.PI*2,Math.random()*Math.PI*2); this.body.quaternion.copy(q); this.mesh.quaternion.copy(q); }
+  applyRollImpulse() { const ang=Math.random()*Math.PI*2,speed=PHYSICS.rollImpulse+Math.random()*4; this.body.velocity.set(Math.cos(ang)*speed,4+Math.random()*3,Math.sin(ang)*speed); this.body.angularVelocity.set((Math.random()-0.5)*PHYSICS.spinImpulse,(Math.random()-0.5)*PHYSICS.spinImpulse,(Math.random()-0.5)*PHYSICS.spinImpulse); this.body.wakeUp(); }
+
+  syncMesh() {
+    this.mesh.position.copy(this.body.position);
+    this.mesh.quaternion.copy(this.body.quaternion);
+    if(this.cheatOffset){const lo=this.cheatOffset.clone();this.body.quaternion.vmult(lo,lo);this.mesh.position.add(lo);}
+  }
+
+  detectUpFace() {
+    let maxDot=-Infinity,upIdx=-1; const local=new CANNON.Vec3(),world_n=new CANNON.Vec3();
+    for(let i=0;i<this.faceNormals.length;i++){const n=this.faceNormals[i];if(n[0]===0&&n[1]===0&&n[2]===0)continue;local.set(n[0],n[1],n[2]);this.body.quaternion.vmult(local,world_n);const dot=world_n.dot(this.detectDir);if(dot>maxDot){maxDot=dot;upIdx=i;}}
+    return upIdx;
+  }
+
+  resolve() { if(this.resolved) return this.rolledValue; this.upFaceIndex=this.detectUpFace(); this.rolledValue=this.faceValues[this.upFaceIndex]; this.resolved=true; return this.rolledValue; }
+
+  destroy() {
+    scene.remove(this.mesh);
+    if(Array.isArray(this.mesh.material)) this.mesh.material.forEach(m=>{if(m.map)m.map.dispose();m.dispose();}); else this.mesh.material.dispose();
+    this.mesh.geometry.dispose(); world.remove(this.body);
+  }
 }
+
+
+
 
 function clearAllDice() { liveDice.forEach(d => d.destroy()); liveDice.length = 0; hideBanner(); }
 
 function spawnDice() {
-  const items = []; DICE_TYPES.forEach(t => { const count = selection[t] || 0; if (t === 'd100') { for (let i = 0; i < count; i++) { items.push({ type: 'd10tens', d100: true, role: 'tens', pairId: i }); items.push({ type: 'd10', d100: true, role: 'ones', pairId: i }); } } else { for (let i = 0; i < count; i++) items.push({ type: t }); } });
-  if (items.length === 0) return false;
-  items.forEach((item, idx) => {
-    const die = new Die(item.type, { partOfD100: !!item.d100, d100Role: item.role }); die.partOfD100 = !!item.d100; die.d100Role = item.role || null; die.d100PairId = item.pairId;
-    const cols = Math.ceil(Math.sqrt(items.length)), col = idx % cols, row = Math.floor(idx / cols), xOff = (col - (cols - 1) / 2) * 1.5 + (Math.random() - 0.5) * 0.4, zOff = (row - (cols - 1) / 2) * 1.5 + (Math.random() - 0.5) * 0.4 - 2;
-    die.setPosition(xOff, 6 + Math.random() * 2, zOff); die.randomizeRotation(); die.applyRollImpulse(); liveDice.push(die);
+  const items = [];
+  DICE_TYPES.forEach(t => {
+    const count = selection[t]||0;
+    if(t==='d100') { for(let i=0;i<count;i++){items.push({type:'d10tens',d100:true,role:'tens',pairId:i});items.push({type:'d10',d100:true,role:'ones',pairId:i});} }
+    else { for(let i=0;i<count;i++) items.push({type:t}); }
+  });
+  if(items.length===0) return false;
+  items.forEach((item,idx) => {
+    const die = new Die(item.type,{partOfD100:!!item.d100,d100Role:item.role});
+    die.partOfD100=!!item.d100; die.d100Role=item.role||null; die.d100PairId=item.pairId;
+    const cols=Math.ceil(Math.sqrt(items.length)),col=idx%cols,row=Math.floor(idx/cols);
+    const xOff=(col-(cols-1)/2)*1.5+(Math.random()-0.5)*0.4;
+    const zOff=(row-(cols-1)/2)*1.5+(Math.random()-0.5)*0.4-2;
+    die.setPosition(xOff,6+Math.random()*2,zOff); die.randomizeRotation(); die.applyRollImpulse(); liveDice.push(die);
   });
   return true;
 }
 
-function rollSelected() { if (rolling || !hasAnyDiceSelected()) return; clearAllDice(); rolling = true; rollResolved = false; rollStartTime = performance.now(); setRollEnabled(false); modifier = parseInt(document.getElementById('modifier').value || '0', 10) || 0; if (!spawnDice()) { rolling = false; setRollEnabled(true); } }
-function setRollEnabled(enabled) { document.getElementById('roll-btn').disabled = !enabled; }
-
-function tryResolveRoll() {
-  if (!rolling || rollResolved || liveDice.length === 0) return;
-  const allSleeping = liveDice.every(d => d.body.sleepState === CANNON.Body.SLEEPING), isTimeout = (performance.now() - rollStartTime) > 5000;
-  if (!allSleeping && !isTimeout) return;
-  if (isTimeout) liveDice.forEach(d => { if(d.body.sleepState !== CANNON.Body.SLEEPING) d.body.sleep(); });
-  liveDice.forEach(d => d.resolve());
-  let total = 0, isCrit = false; const breakdownParts = [], d100Groups = {}, standalone = [], byType = {};
-  liveDice.forEach(d => { if (d.partOfD100) { if (!d100Groups[d.d100PairId]) d100Groups[d.d100PairId] = {}; d100Groups[d.d100PairId][d.d100Role] = d; } else standalone.push(d); });
-  Object.keys(d100Groups).forEach(id => { const g = d100Groups[id]; if (!g.tens || !g.ones) return; let val = (g.tens.rolledValue || 0) + (g.ones.rolledValue || 0); if (val === 0) val = 100; total += val; breakdownParts.push(`d100=${val} (${g.tens.rolledValue}|${g.ones.rolledValue})`); });
-  standalone.forEach(d => { if (!byType[d.type]) byType[d.type] = []; let v = d.rolledValue; if (d.type === 'd10' && v === 0) v = 10; byType[d.type].push(v); total += v; if (d.type === 'd20' && d.rolledValue === 20 && !d.critEffectSpawned) { isCrit = true; d.critEffectSpawned = true; spawnCritParticles(d.mesh.position); } });
-  Object.keys(byType).forEach(t => breakdownParts.unshift(`${byType[t].length}${t}=[${byType[t].join(',')}]`));
-  total += modifier; rollResolved = true; rolling = false; setRollEnabled(true);
-  showBanner(total, breakdownParts.join(' + '), modifier, isCrit, byType, d100Groups); addToHistory(total, breakdownParts.join(' + '), modifier, isCrit);
+function rollSelected() {
+  if(rolling||!hasAnyDiceSelected()) return;
+  clearAllDice(); rolling=true; rollResolved=false; rollStartTime=performance.now(); setRollEnabled(false);
+  modifier=parseInt(document.getElementById('modifier').value||'0',10)||0;
+  SFX.roll(); 
+  if(!spawnDice()) { rolling=false; setRollEnabled(true); }
 }
 
+function setRollEnabled(enabled) { document.getElementById('roll-btn').disabled=!enabled; }
+
+function tryResolveRoll() {
+  if(!rolling||rollResolved||liveDice.length===0) return;
+  const allSleeping=liveDice.every(d=>d.body.sleepState===CANNON.Body.SLEEPING);
+  const isTimeout=(performance.now()-rollStartTime)>5000;
+  if(!allSleeping&&!isTimeout) return;
+  if(isTimeout) liveDice.forEach(d=>{if(d.body.sleepState!==CANNON.Body.SLEEPING)d.body.sleep();});
+
+  liveDice.forEach(d=>d.resolve());
+  let total=0,isCrit=false; const breakdownParts=[],d100Groups={},standalone=[],byType={};
+  liveDice.forEach(d=>{if(d.partOfD100){if(!d100Groups[d.d100PairId])d100Groups[d.d100PairId]={};d100Groups[d.d100PairId][d.d100Role]=d;}else standalone.push(d);});
+  Object.keys(d100Groups).forEach(id=>{const g=d100Groups[id];if(!g.tens||!g.ones)return;let val=(g.tens.rolledValue||0)+(g.ones.rolledValue||0);if(val===0)val=100;total+=val;breakdownParts.push(`d100=${val}`);});
+  standalone.forEach(d=>{if(!byType[d.type])byType[d.type]=[];let v=d.rolledValue;if(d.type==='d10'&&v===0)v=10;byType[d.type].push(v);total+=v;
+    if(d.type==='d20'&&d.rolledValue===20&&!d.critEffectSpawned){isCrit=true;d.critEffectSpawned=true;spawnCritParticles(d.mesh.position);}
+  });
+  Object.keys(byType).forEach(t=>breakdownParts.unshift(`${byType[t].length}${t}=[${byType[t].join(',')}]`));
+  total+=modifier; rollResolved=true; rolling=false; setRollEnabled(true);
+
+  if(isCrit) SFX.crit(); 
+
+  showBanner(total,breakdownParts.join(' + '),modifier,isCrit,byType,d100Groups);
+  addToHistory(total,breakdownParts.join(' + '),modifier,isCrit);
+}
+
+
+
+
 function spawnCritParticles(position) {
-  const count = 80, geom = new THREE.BufferGeometry(), positions = new Float32Array(count * 3), velocities = [], lifetimes = new Float32Array(count);
-  for (let i = 0; i < count; i++) { positions[i*3] = position.x; positions[i*3+1] = position.y + 0.5; positions[i*3+2] = position.z; const theta = Math.random() * Math.PI * 2, phi = Math.random() * Math.PI, speed = 4 + Math.random() * 6; velocities.push(new THREE.Vector3(Math.sin(phi) * Math.cos(theta) * speed, Math.abs(Math.cos(phi)) * speed * 1.2 + 2, Math.sin(phi) * Math.sin(theta) * speed)); lifetimes[i] = 1.0 + Math.random() * 0.8; }
-  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3)); const mat = new THREE.PointsMaterial({ color: 0xD11515, size: 0.18, transparent: true, opacity: 1, blending: THREE.AdditiveBlending, depthWrite: false }), points = new THREE.Points(geom, mat); scene.add(points); particleGroups.push({ points, velocities, lifetimes, age: 0, maxAge: 1.6 });
+  const count=80,geom=new THREE.BufferGeometry(),positions=new Float32Array(count*3),velocities=[];
+  for(let i=0;i<count;i++){positions[i*3]=position.x;positions[i*3+1]=position.y+0.5;positions[i*3+2]=position.z;const theta=Math.random()*Math.PI*2,phi=Math.random()*Math.PI,speed=4+Math.random()*6;velocities.push(new THREE.Vector3(Math.sin(phi)*Math.cos(theta)*speed,Math.abs(Math.cos(phi))*speed*1.2+2,Math.sin(phi)*Math.sin(theta)*speed));}
+  geom.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  const mat=new THREE.PointsMaterial({color:0xD11515,size:0.18,transparent:true,opacity:1,blending:THREE.AdditiveBlending,depthWrite:false});
+  const points=new THREE.Points(geom,mat); scene.add(points);
+  particleGroups.push({points,velocities,age:0,maxAge:1.6});
 }
 
 function updateParticles(dt) {
-  for (let i = particleGroups.length - 1; i >= 0; i--) { const g = particleGroups[i]; g.age += dt; const positions = g.points.geometry.attributes.position.array; for (let p = 0; p < g.velocities.length; p++) { positions[p*3] += g.velocities[p].x * dt; positions[p*3+1] += g.velocities[p].y * dt; positions[p*3+2] += g.velocities[p].z * dt; g.velocities[p].y -= 18 * dt; } g.points.geometry.attributes.position.needsUpdate = true; g.points.material.opacity = Math.max(0, 1 - (g.age / g.maxAge)); if (g.age >= g.maxAge) { scene.remove(g.points); g.points.geometry.dispose(); g.points.material.dispose(); particleGroups.splice(i, 1); } }
+  for(let i=particleGroups.length-1;i>=0;i--){const g=particleGroups[i];g.age+=dt;const pos=g.points.geometry.attributes.position.array;for(let p=0;p<g.velocities.length;p++){pos[p*3]+=g.velocities[p].x*dt;pos[p*3+1]+=g.velocities[p].y*dt;pos[p*3+2]+=g.velocities[p].z*dt;g.velocities[p].y-=18*dt;}g.points.geometry.attributes.position.needsUpdate=true;g.points.material.opacity=Math.max(0,1-(g.age/g.maxAge));if(g.age>=g.maxAge){scene.remove(g.points);g.points.geometry.dispose();g.points.material.dispose();particleGroups.splice(i,1);}}
 }
 
-function showBanner(total, breakdown, mod, isCrit, byType, d100Groups) {
-  const banner = document.getElementById('result-banner'); document.getElementById('banner-total').textContent = total; const parts = [];
-  Object.keys(byType).forEach(t => parts.push(`${byType[t].length}${t} [${byType[t].join(' + ')}]`));
-  Object.keys(d100Groups).forEach(id => { const g = d100Groups[id]; if (g.tens && g.ones) parts.push(`d100 [${((g.tens.rolledValue + g.ones.rolledValue) === 0) ? 100 : (g.tens.rolledValue + g.ones.rolledValue)}]`); });
-  let breakdownText = parts.join(' + '); if (mod !== 0) breakdownText += ` ${mod >= 0 ? '+' : ''} ${mod}`;
-  document.getElementById('banner-breakdown').textContent = breakdownText; document.getElementById('banner-crit').style.display = isCrit ? 'block' : 'none';
-  banner.classList.add('show'); clearTimeout(showBanner._timer); showBanner._timer = setTimeout(hideBanner, isCrit ? 5000 : 3500);
+
+
+
+function showBanner(total,breakdown,mod,isCrit,byType,d100Groups) {
+  const banner=document.getElementById('result-banner'); document.getElementById('banner-total').textContent=total;
+  const parts=[];
+  Object.keys(byType).forEach(t=>parts.push(`${byType[t].length}${t} [${byType[t].join(' + ')}]`));
+  Object.keys(d100Groups).forEach(id=>{const g=d100Groups[id];if(g.tens&&g.ones)parts.push(`d100 [${((g.tens.rolledValue+g.ones.rolledValue)===0)?100:(g.tens.rolledValue+g.ones.rolledValue)}]`);});
+  let bt=parts.join(' + '); if(mod!==0)bt+=` ${mod>=0?'+':''} ${mod}`;
+  document.getElementById('banner-breakdown').textContent=bt;
+  document.getElementById('banner-crit').style.display=isCrit?'block':'none';
+  banner.classList.add('show'); clearTimeout(showBanner._timer); showBanner._timer=setTimeout(hideBanner,isCrit?5000:3500);
 }
 function hideBanner() { document.getElementById('result-banner').classList.remove('show'); }
 
-function addToHistory(total, breakdown, mod, isCrit) {
-  const empty = document.getElementById('history-empty'); if (empty) empty.remove();
-  const li = document.createElement('li'); li.className = 'history-item' + (isCrit ? ' crit' : '');
-  const breakdownDiv = document.createElement('div'); breakdownDiv.className = 'breakdown'; breakdownDiv.textContent = breakdown + (mod !== 0 ? ` ${mod >= 0 ? '+' : ''} ${mod}` : '');
-  const formulaDiv = document.createElement('div'); formulaDiv.className = 'formula'; formulaDiv.textContent = formulaFromSelection();
-  const totalDiv = document.createElement('div'); totalDiv.className = 'total'; totalDiv.textContent = total;
-  li.appendChild(formulaDiv); li.appendChild(totalDiv); li.appendChild(breakdownDiv);
-  const list = document.getElementById('history-list'); list.insertBefore(li, list.firstChild);
-  while (list.children.length > 30) list.removeChild(list.lastChild); history.unshift({ total, breakdown, mod, isCrit });
+function addToHistory(total,breakdown,mod,isCrit) {
+  const empty=document.getElementById('history-empty'); if(empty)empty.remove();
+  const li=document.createElement('li'); li.className='history-item'+(isCrit?' crit':'');
+  const fDiv=document.createElement('div'); fDiv.className='formula'; fDiv.textContent=formulaFromSelection();
+  const tDiv=document.createElement('div'); tDiv.className='total'; tDiv.textContent=total;
+  const bDiv=document.createElement('div'); bDiv.className='breakdown'; bDiv.textContent=breakdown+(mod!==0?` ${mod>=0?'+':''} ${mod}`:'');
+  li.appendChild(fDiv); li.appendChild(tDiv); li.appendChild(bDiv);
+  const list=document.getElementById('history-list'); list.insertBefore(li,list.firstChild);
+  while(list.children.length>30)list.removeChild(list.lastChild);
+  history.unshift({total,breakdown,mod,isCrit});
 }
 
 function buildDiceSelector() {
-  const sel = document.getElementById('dice-selector');
-  const icons = { d2: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" stroke-dasharray="2 2"/></svg>', d4: '<svg viewBox="0 0 24 24"><polygon points="12,3 21,20 3,20"/></svg>', d6: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>', d8: '<svg viewBox="0 0 24 24"><polygon points="12,3 21,12 12,21 3,12"/></svg>', d10: '<svg viewBox="0 0 24 24"><polygon points="12,3 20,10 17,21 7,21 4,10"/></svg>', d12: '<svg viewBox="0 0 24 24"><polygon points="12,3 20,9 17,19 7,19 4,9"/><polygon points="12,3 20,9 17,19 7,19 4,9" transform="rotate(36 12 12) scale(0.7) translate(5 5)" opacity="0.4"/></svg>', d20: '<svg viewBox="0 0 24 24"><polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="16"/><line x1="22" y1="8" x2="2" y2="16"/></svg>', d100:'<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="5"/><circle cx="16" cy="16" r="5"/><line x1="20" y1="4" x2="4" y2="20"/></svg>' };
-  DICE_TYPES.forEach(t => { const btn = document.createElement('button'); btn.className = 'die-btn'; btn.dataset.type = t; btn.innerHTML = `${icons[t]}<span class="lbl">${t}</span><span class="count-badge" data-type="${t}">0</span>`; btn.addEventListener('click', () => { selection[t] = (selection[t] || 0) + 1; if (selection[t] > 20) selection[t] = 20; updateSelectionDisplay(); }); btn.addEventListener('contextmenu', (e) => { e.preventDefault(); if (selection[t] > 0) selection[t] -= 1; updateSelectionDisplay(); }); sel.appendChild(btn); });
+  const sel=document.getElementById('dice-selector');
+  const icons={d2:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" stroke-dasharray="2 2"/></svg>',d4:'<svg viewBox="0 0 24 24"><polygon points="12,3 21,20 3,20"/></svg>',d6:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>',d8:'<svg viewBox="0 0 24 24"><polygon points="12,3 21,12 12,21 3,12"/></svg>',d10:'<svg viewBox="0 0 24 24"><polygon points="12,3 20,10 17,21 7,21 4,10"/></svg>',d12:'<svg viewBox="0 0 24 24"><polygon points="12,3 20,9 17,19 7,19 4,9"/></svg>',d20:'<svg viewBox="0 0 24 24"><polygon points="12,2 22,8 22,16 12,22 2,16 2,8"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8" x2="22" y2="16"/><line x1="22" y1="8" x2="2" y2="16"/></svg>',d100:'<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="5"/><circle cx="16" cy="16" r="5"/><line x1="20" y1="4" x2="4" y2="20"/></svg>'};
+  DICE_TYPES.forEach(t=>{
+    const btn=document.createElement('button'); btn.className='die-btn'; btn.dataset.type=t;
+    btn.innerHTML=`${icons[t]}<span class="lbl">${t}</span><span class="count-badge" data-type="${t}">0</span>`;
+    btn.addEventListener('click',()=>{selection[t]=(selection[t]||0)+1;if(selection[t]>20)selection[t]=20;updateSelectionDisplay();});
+    btn.addEventListener('contextmenu',e=>{e.preventDefault();if(selection[t]>0)selection[t]-=1;updateSelectionDisplay();});
+    sel.appendChild(btn);
+  });
 }
 
-function updateSelectionDisplay() { DICE_TYPES.forEach(t => { const badge = document.querySelector(`.count-badge[data-type="${t}"]`), c = selection[t] || 0; badge.textContent = c; badge.classList.toggle('active', c > 0); }); const formula = formulaFromSelection(), ft = document.getElementById('formula-text'); ft.innerHTML = formula ? `<span class="formula">${formula}</span>` : `<span class="empty">— nenhum dado selecionado —</span>`; }
-function formulaFromSelection() { const parts = []; DICE_TYPES.forEach(t => { if ((selection[t] || 0) > 0) parts.push(`${selection[t]}${t}`); }); let f = parts.join(' + '); const mod = parseInt(document.getElementById('modifier').value || '0', 10) || 0; if (mod !== 0 && f) f += ` ${mod >= 0 ? '+' : '-'} ${Math.abs(mod)}`; return f; }
-function hasAnyDiceSelected() { return DICE_TYPES.some(t => (selection[t] || 0) > 0); }
+function updateSelectionDisplay() {
+  DICE_TYPES.forEach(t=>{const badge=document.querySelector(`.count-badge[data-type="${t}"]`),c=selection[t]||0;badge.textContent=c;badge.classList.toggle('active',c>0);});
+  const formula=formulaFromSelection(),ft=document.getElementById('formula-text');
+  ft.innerHTML=formula?`<span class="formula">${formula}</span>`:`<span class="empty">— nenhum dado selecionado —</span>`;
+}
+function formulaFromSelection() { const parts=[]; DICE_TYPES.forEach(t=>{if((selection[t]||0)>0)parts.push(`${selection[t]}${t}`);}); let f=parts.join(' + '); const mod=parseInt(document.getElementById('modifier').value||'0',10)||0; if(mod!==0&&f)f+=` ${mod>=0?'+':'-'} ${Math.abs(mod)}`; return f; }
+function hasAnyDiceSelected() { return DICE_TYPES.some(t=>(selection[t]||0)>0); }
 
 function setupUI() {
-  buildDiceSelector(); document.getElementById('roll-btn').addEventListener('click', rollSelected);
-  document.getElementById('clear-btn').addEventListener('click', () => { DICE_TYPES.forEach(t => selection[t] = 0); document.getElementById('modifier').value = 0; updateSelectionDisplay(); clearAllDice(); });
-  document.getElementById('mod-plus').addEventListener('click', () => { const inp = document.getElementById('modifier'); inp.value = (parseInt(inp.value || '0', 10) || 0) + 1; updateSelectionDisplay(); });
-  document.getElementById('mod-minus').addEventListener('click', () => { const inp = document.getElementById('modifier'); inp.value = (parseInt(inp.value || '0', 10) || 0) - 1; updateSelectionDisplay(); });
-  document.getElementById('modifier').addEventListener('input', updateSelectionDisplay);
-  document.addEventListener('keydown', (e) => { if (e.target.tagName === 'INPUT') return; if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); rollSelected(); } if (e.code === 'Escape') clearAllDice(); });
+  buildDiceSelector();
+  document.getElementById('roll-btn').addEventListener('click',rollSelected);
+  document.getElementById('clear-btn').addEventListener('click',()=>{DICE_TYPES.forEach(t=>selection[t]=0);document.getElementById('modifier').value=0;updateSelectionDisplay();clearAllDice();});
+  document.getElementById('mod-plus').addEventListener('click',()=>{const inp=document.getElementById('modifier');inp.value=(parseInt(inp.value||'0',10)||0)+1;updateSelectionDisplay();});
+  document.getElementById('mod-minus').addEventListener('click',()=>{const inp=document.getElementById('modifier');inp.value=(parseInt(inp.value||'0',10)||0)-1;updateSelectionDisplay();});
+  document.getElementById('modifier').addEventListener('input',updateSelectionDisplay);
+  document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.code==='Space'||e.code==='Enter'){e.preventDefault();rollSelected();}if(e.code==='Escape')clearAllDice();});
 }
 
-const clock = new THREE.Clock();
-function animate() { requestAnimationFrame(animate); const dt = Math.min(clock.getDelta(), 1/30); world.step(1/60, dt, 3); liveDice.forEach(d => d.syncMesh()); tryResolveRoll(); updateParticles(dt); renderer.render(scene, camera); }
 
-function boot() { initScene(); setupUI(); updateSelectionDisplay(); animate(); setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 400); }
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+
+
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 1/30);
+  world.step(1/60, dt, 3);
+  liveDice.forEach(d => d.syncMesh());
+  tryResolveRoll();
+  updateParticles(dt);
+  renderer.render(scene, camera);
+}
+
+
+
+
+function boot() {
+  generateFavicon();   
+  initScene();
+  setupUI();
+  setupWelcome();      
+  updateSelectionDisplay();
+  animate();
+  setTimeout(() => { document.getElementById('loading').classList.add('hidden'); }, 400);
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 
 })();
 </script>
-
 </body>
 </html>
